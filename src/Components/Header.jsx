@@ -1,19 +1,32 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
+import logo from "../assets/logo-sin-fondo.png"
+import logowhite from "../assets/logo-white.png"
 
 export default function Header() {
     return(
-        <StyledHeader>
-            <div className="header-left">
-                <img src="" alt="logo" />
-            </div>
-            <div className="header-right">
-                <CustomizedInputBase />
-                <img src="" alt="cart" />
-            </div>
-        </StyledHeader>
+      <header>
+        <UpperHeader>
+          <LogoWhite src={`${logowhite}`} alt={logo} />
+          <Flex>
+            <p>Hecho en casa, hecho a mano, hecho con amor.</p>
+          </Flex>
+        </UpperHeader>
+        <MainHeader>
+          <div className="header-left">
+            <Logo src={`${logo}`} alt="logo" />
+          </div>
+          <div className="header-center">
+
+          </div>
+          <HeaderRight className="header-right">
+            <CustomizedInputBase />
+            <StyledCart />
+          </HeaderRight>
+        </MainHeader>
+      </header>
     )
 }
 
@@ -21,7 +34,7 @@ function CustomizedInputBase() {
     return (
       <Paper
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 250 }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 250, height: 40 }}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
@@ -35,9 +48,70 @@ function CustomizedInputBase() {
     );
 }
 
-const StyledHeader = styled.header`
-    display: flex;
-    border: 1px solid red;
-    justify-content: space-between;
-    padding: 10rem 0;
+const MainHeader = styled.div`
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  padding: 15rem 20rem;
+  width: 100%;
+  background-color: var(--primary-light);
+`
+const UpperHeader = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 20rem;
+  color: var(--white);
+  background-color: var(--primary-strong);
+  height: 38rem;
+  padding: 8rem 40rem;
+`
+
+const HeaderRight = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20rem;
+`
+const Logo = styled.img`
+  display: none;
+  height: 80rem;
+  min-width: 188.56rem;
+
+  @media (min-width: 600px){
+    display: block;
+  }
+`
+const LogoWhite = styled.img`
+  height: 30rem;
+  margin-right: auto;
+`
+
+const StyledCart = styled(ShoppingCartIcon)`
+  padding: 4rem;
+  border-radius: 20rem;
+  font-size: 34rem;
+  color: var(--primary-strong);
+  transition: .3s all ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-strong);
+    color: var(--white)
+  }
+`
+
+const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+
+  @media (min-width: 670px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `
