@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Header from './Components/Header'
+import Footer from './Components/Footer'
 
 function App() {
 
@@ -10,11 +11,13 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path='/' element={<p>Homepage</p>}/>
-        <Route path='/category' element={<p>Category display</p>} />
-        <Route path='/category/product' element={<p>Producto</p>} />
-        <Route path='*' element={<p>404 Not found</p>}/>
+        <Route path='/' element={<main>Homepage</main>}/>
+        <Route path='/category' element={<main>Category display</main>} />
+        <Route path='/category/product' element={<main>Producto</main>} />
+        <Route path='*' element={<main>404 Not found</main>}/>
       </Routes>
+
+      <Footer />
     </HashRouter>
   )
 }
