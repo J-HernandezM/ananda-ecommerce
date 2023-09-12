@@ -13,10 +13,10 @@ import './fonts/Selfie-Light.woff2'
 import './fonts/Vogue-Regular.woff'
 import './fonts/Vogue-Regular.woff2'
 import './index.css'
+import './fonts.css'
 
 const customTheme = createTheme({
   typography: {
-    fontFamily: 'Myriad Pro',
     fontSize: '16rem',
   }
 })

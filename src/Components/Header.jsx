@@ -11,7 +11,7 @@ export default function Header() {
         <UpperHeader>
           <LogoWhite src={`${logowhite}`} alt={logo} />
           <Flex>
-            <p>Hecho en casa, hecho a mano, hecho con amor.</p>
+            Hecho en casa, hecho a mano, hecho con amor.
           </Flex>
         </UpperHeader>
         <MainHeader>
@@ -105,9 +105,11 @@ const Flex = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  min-width: 177rem;
+  line-height: 15rem;
 
 
-  @media (min-width: 670px) {
+  @media (min-width: 700px) {
     position: absolute;
     top: 0;
     left: 0;
