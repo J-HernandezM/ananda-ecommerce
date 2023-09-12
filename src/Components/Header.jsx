@@ -10,27 +10,31 @@ export default function Header() {
       <header>
         <UpperHeader>
           <LogoWhite src={`${logowhite}`} alt={logo} />
-          <Flex>
-            Hecho en casa, hecho a mano, hecho con amor.
-          </Flex>
+          <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
         </UpperHeader>
         <MainHeader>
           <div className="header-left">
             <Logo src={`${logo}`} alt="logo" />
           </div>
           <div className="header-center">
-
+            <ul>
+              <li>Limpieza facial</li>
+              <li>Tratamientos</li>
+              <li>Cremas y unguentos</li>
+              <li>Mascarillas</li>
+              <li>Tienda</li>
+            </ul>
           </div>
           <HeaderRight className="header-right">
-            <CustomizedInputBase />
-            <StyledCart />
+            <SearchBar />
+            <CartSVG />
           </HeaderRight>
         </MainHeader>
       </header>
     )
 }
 
-function CustomizedInputBase() {
+function SearchBar() {
     return (
       <Paper
         component="form"
@@ -86,7 +90,7 @@ const LogoWhite = styled.img`
   margin-right: auto;
 `
 
-const StyledCart = styled(ShoppingCartIcon)`
+const CartSVG = styled(ShoppingCartIcon)`
   padding: 4rem;
   border-radius: 20rem;
   font-size: 34rem;
@@ -100,14 +104,13 @@ const StyledCart = styled(ShoppingCartIcon)`
   }
 `
 
-const Flex = styled.div`
+const Phrase = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   min-width: 177rem;
   line-height: 15rem;
-
 
   @media (min-width: 700px) {
     position: absolute;
