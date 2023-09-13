@@ -1,5 +1,6 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
 import logo from "../assets/logo-sin-fondo.png"
@@ -37,9 +38,10 @@ export default function Header() {
           <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
         </UpperHeader>
         <MainHeader>
-          <div className="header-left">
+          <>
+            <CartSVG as={MenuSVG} />
             <Logo src={`${logo}`} alt="logo" />
-          </div>
+          </>
           <HeaderRight className="header-right">
             <SearchBar />
             <CartSVG />
@@ -54,26 +56,27 @@ export default function Header() {
 
 function SearchBar() {
     return (
-      <Paper
-        component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 250, height: 40 }}
-      >
+      <SearchBarPaper component="form" >
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ ml: 1, flex: 1}}
           placeholder="Buscar"
           inputProps={{ 'aria-label': 'Buscar' }}
         />
         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
           <SearchIcon />
         </IconButton>
-      </Paper>
+      </SearchBarPaper>
     );
 }
 
 function CategoryLink({ categorie }) {
   return(
     <StyledNavLink 
-      style={({isActive})=>({color: isActive?'var(--primary-strong)':'var(--white)', backgroundColor: isActive?'var(--white)':'inherit'})}
+      style={({isActive})=>({
+        color: isActive?'var(--primary-strong)':'var(--white)', backgroundColor: isActive?'var(--white)':'inherit', 
+        fontFamily: 'AbnormalN',
+        whiteSpace: 'nowrap'
+      })}
       key={categorie.slug} 
       to={`category/${categorie.slug}`}
     >
@@ -85,6 +88,8 @@ function CategoryLink({ categorie }) {
 const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 20rem;
   padding: 15rem 20rem;
   width: 100%;
   background-color: var(--primary-light);
@@ -100,12 +105,16 @@ const UpperHeader = styled.div`
   padding: 8rem 40rem;
   `
 const Categories = styled.ul`
-  display: flex;
+  display: none;
   margin: 0;
   padding-left: 0rem;
   gap: 10rem;
   background-color: var(--primary-strong);
   color: var(--white);
+
+  @media (min-width: 650px) {
+    display: flex;
+  }
 `
 const StyledNavLink = styled(NavLink)`
   border-bottom: none;
@@ -116,20 +125,45 @@ const StyledNavLink = styled(NavLink)`
 const HeaderRight = styled.div`
   display: flex;
   align-items: center;
+  flex-grow: 1;
   gap: 20rem;
+  justify-content: space-between;
+
+  @media (min-width: 650px) {
+    flex-grow: 0;
+  }
 `
+const SearchBarPaper = styled(Paper)`
+  display: flex;
+  align-items: center;
+  flex: 1 ;
+  padding: 2px 4px; 
+  height: 40rem;
+  min-width: 210rem;
+
+  @media (min-width: 650px) {
+    flex: none;
+  }
+`
+
 const Logo = styled.img`
   display: none;
   height: 80rem;
   min-width: 188.56rem;
 
-  @media (min-width: 600px){
+  @media (min-width: 650px){
     display: block;
   }
 `
 const LogoWhite = styled.img`
   height: 30rem;
   margin-right: auto;
+`
+
+const MenuSVG = styled(MenuIcon)`
+  @media (min-width: 650px) {
+    display: none;
+  }
 `
 
 const CartSVG = styled(ShoppingCartIcon)`
