@@ -28,23 +28,51 @@
     font-display: swap;
   }
   
-  @font-face {
-    font-family: 'Abnormal';
-    src: url('./fonts/Abnormal-Light.woff2') format('woff2'),
-        url('./fonts/Abnormal-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
   
   @font-face {
-    font-family: 'Selfie';
-    src: url('./fonts/Selfie-Light.woff2') format('woff2'),
-        url('./fonts/Selfie-Light.woff') format('woff');
-    font-weight: 300;
+      font-family: 'Selfie';
+      src: url('./fonts/Selfie-Light.woff2') format('woff2'),
+      url('./fonts/Selfie-Light.woff') format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Abnormal';
+      src: url('./fonts/Abnormal-Light.woff2') format('woff2'),
+          url('./fonts/Abnormal-Light.woff') format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+@font-face {
+    font-family: 'AbnormalN';
+    src: url('./fonts/Abnormal-Regular.woff2') format('woff2'),
+        url('./fonts/Abnormal-Regular.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+}
+
+@font-face {
+    font-family: 'Abnormal6';
+    src: url('./fonts/Abnormal-SemiBold.woff2') format('woff2'),
+        url('./fonts/Abnormal-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AbnormalB';
+    src: url('./fonts/Abnormal-Bold.woff2') format('woff2'),
+    url('./fonts/Abnormal-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
   
   
   
