@@ -4,6 +4,30 @@ import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
 import logo from "../assets/logo-sin-fondo.png"
 import logowhite from "../assets/logo-white.png"
+import { NavLink } from "react-router-dom";
+
+const categories = [
+  {
+    title: 'Limpieza facial',
+    slug: 'limpieza-facial'
+  },
+  {
+    title: 'Tratamientos',
+    slug: 'tratamientos'
+  },
+  {
+    title: 'Cremas y unguentos',
+    slug: 'cremas-y-unguentos'
+  },
+  {
+    title: 'Mascarillas',
+    slug: 'mascarillas'
+  },
+  {
+    title: 'Tienda',
+    slug: 'all'
+  }
+]
 
 export default function Header() {
     return(
@@ -16,20 +40,14 @@ export default function Header() {
           <div className="header-left">
             <Logo src={`${logo}`} alt="logo" />
           </div>
-          <div className="header-center">
-            <ul>
-              <li>Limpieza facial</li>
-              <li>Tratamientos</li>
-              <li>Cremas y unguentos</li>
-              <li>Mascarillas</li>
-              <li>Tienda</li>
-            </ul>
-          </div>
           <HeaderRight className="header-right">
             <SearchBar />
             <CartSVG />
           </HeaderRight>
         </MainHeader>
+        <Categories>
+              {categories.map((categorie)=>(<CategoryLink categorie={categorie} key={categorie.slug}/>))}
+        </Categories>
       </header>
     )
 }
@@ -52,9 +70,20 @@ function SearchBar() {
     );
 }
 
+function CategoryLink({ categorie }) {
+  return(
+    <StyledNavLink 
+      style={({isActive})=>({color: isActive?'var(--primary-strong)':'var(--white)', backgroundColor: isActive?'var(--white)':'inherit'})}
+      key={categorie.slug} 
+      to={`category/${categorie.slug}`}
+    >
+      {categorie.title}
+    </StyledNavLink>
+  )
+}
+
 const MainHeader = styled.div`
   display: flex;
-  position: fixed;
   justify-content: space-between;
   padding: 15rem 20rem;
   width: 100%;
@@ -69,6 +98,19 @@ const UpperHeader = styled.div`
   background-color: var(--primary-strong);
   height: 38rem;
   padding: 8rem 40rem;
+  `
+const Categories = styled.ul`
+  display: flex;
+  margin: 0;
+  padding-left: 0rem;
+  gap: 10rem;
+  background-color: var(--primary-strong);
+  color: var(--white);
+`
+const StyledNavLink = styled(NavLink)`
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  padding: 0 10px;
 `
 
 const HeaderRight = styled.div`

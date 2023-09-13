@@ -11,10 +11,9 @@ function App() {
       <Routes>
         <Route path='/' element={<main>Homepage</main>}/>
         <Route path='/category' element={<main>Category display</main>} />
-        <Route path='/category/product' element={<main>Producto</main>} />
+        <Route path='/category/:product' element={<main>Producto</main>} />
         <Route path='*' element={<main>404 Not found</main>}/>
       </Routes>
-      <p>hola</p>
 
       <Footer />
     </HashRouter>
