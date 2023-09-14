@@ -10,18 +10,17 @@ const MainContainer = styled.main`
   transition: .3s all;
   transform: translateY(${props=>props.mobMenu?'300rem':'108rem'});
   @media (min-width: 650px) {
-    transform: translateY(${props=>props.mobMenu?'300rem':'172rem'});
+    transform: translateY(172rem);
   }
 `
 
 function App() {
   const [mobMenu, setMobMenu] = useState(false)
-  console.log(mobMenu)
   return (
     <HashRouter>
       <Header mobMenu={mobMenu} setMobMenu={setMobMenu}/>
       <Routes>
-        <Route path='/' element={<MainContainer mobMenu={mobMenu}><Homepage mobMenu={mobMenu} setMobMenu={setMobMenu}/></MainContainer>}/>
+        <Route path='/' element={<MainContainer mobMenu={mobMenu}><Homepage /></MainContainer>}/>
         <Route path='/category' element={<main>Category display</main>} />
         <Route path='/category/:product' element={<main>Producto</main>} />
         <Route path='*' element={<main>404 Not found</main>}/>
