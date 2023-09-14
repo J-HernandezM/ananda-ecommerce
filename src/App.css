@@ -12,4 +12,12 @@ main{
 header{
     position: fixed;
     width: 100%;
+    z-index: 9;
+    height: 108rem;
+}
+
+@media (min-width: 650px) {
+    header{
+        height: 172rem;
+    }   
 }
