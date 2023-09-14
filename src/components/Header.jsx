@@ -1,11 +1,13 @@
+
 import { IconButton, InputBase, Paper } from "@mui/material";
+import { NavLink, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
 import logo from "../assets/logo-sin-fondo.png"
 import logowhite from "../assets/logo-white.png"
-import { NavLink } from "react-router-dom";
+import MobileMenu from "./MobileMenu";
 
 const categories = [
   {
@@ -29,29 +31,39 @@ const categories = [
     slug: 'all'
   }
 ]
+export default function Header({mobMenu, setMobMenu}) {
+  const navigate = useNavigate()
 
-export default function Header() {
-    return(
-      <header>
-        <UpperHeader>
-          <LogoWhite src={`${logowhite}`} alt={logo} />
-          <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
-        </UpperHeader>
-        <MainHeader>
-          <>
-            <CartSVG as={MenuSVG} />
-            <Logo src={`${logo}`} alt="logo" />
-          </>
-          <HeaderRight className="header-right">
-            <SearchBar />
-            <CartSVG />
-          </HeaderRight>
-        </MainHeader>
-        <Categories>
-              {categories.map((categorie)=>(<CategoryLink categorie={categorie} key={categorie.slug}/>))}
-        </Categories>
-      </header>
-    )
+  const toggleMobileMenu = () => {
+    setMobMenu(!mobMenu)
+  }
+  const navHome = () => {
+    navigate('/')
+  }
+
+  return(
+    <header>
+      <UpperHeader>
+        <LogoWhite src={`${logowhite}`} alt={logo} onClick={navHome}/>
+        <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
+      </UpperHeader>
+      <MainHeader>
+        <>
+          <CartSVG as={MenuSVG} onClick={toggleMobileMenu}/>
+          <Logo src={`${logo}`} alt="logo" onClick={navHome}/>
+        </>
+        <HeaderRight className="header-right">
+          <SearchBar />
+          <CartSVG />
+        </HeaderRight>
+      </MainHeader>
+      <Categories>
+            {categories.map((categorie)=>(<CategoryLink categorie={categorie} key={categorie.slug}/>))}
+      </Categories>
+
+      <MobileMenu categories={categories} mobMenu={mobMenu} setMobMenu={setMobMenu}/>
+    </header>
+  )
 }
 
 function SearchBar() {
@@ -73,7 +85,8 @@ function CategoryLink({ categorie }) {
   return(
     <StyledNavLink 
       style={({isActive})=>({
-        color: isActive?'var(--primary-strong)':'var(--white)', backgroundColor: isActive?'var(--white)':'inherit', 
+        color: isActive?'var(--primary-strong)':'var(--white)', 
+        backgroundColor: isActive?'var(--white)':'inherit', 
         fontFamily: 'AbnormalN',
         whiteSpace: 'nowrap'
       })}
@@ -151,6 +164,10 @@ const Logo = styled.img`
   height: 80rem;
   min-width: 188.56rem;
 
+  &:hover{
+    cursor: pointer;
+  }
+
   @media (min-width: 650px){
     display: block;
   }
@@ -158,6 +175,12 @@ const Logo = styled.img`
 const LogoWhite = styled.img`
   height: 30rem;
   margin-right: auto;
+  position: relative;
+  z-index: 10;
+
+  &:hover{
+    cursor: pointer;
+  }
 `
 
 const MenuSVG = styled(MenuIcon)`
@@ -194,5 +217,6 @@ const Phrase = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
   }
 `
