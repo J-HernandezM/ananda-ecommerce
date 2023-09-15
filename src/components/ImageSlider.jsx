@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { useNavigate } from "react-router-dom"
+import { Icon } from "../App";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import tienda from '../assets/c-tienda.jpg'
@@ -39,18 +40,32 @@ const images = [
 export default function ImageSlider() {
     const navigate = useNavigate()
 
+    const handleNextImage = (e) => {
+        e.target.closest('#nav-controls').previousElementSibling.scrollBy(1, 0);
+    }
+    const handlePrevImage = (e) => {
+        e.target.closest('#nav-controls').previousElementSibling.scrollBy(-1, 0);
+    }
+
+    const BlackIcon = styled(Icon)`
+        color: black;
+    `
+
     return(
-        <>
+        <Carrousel>
             <ImageBox>
-                {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`${image.slug}`)}}/>)}
-                <NavigateControls>
-                    <Icon />                
-                    <Icon as={NavigateNextIcon} />                
-                </NavigateControls>
+                {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
             </ImageBox>
-        </>
+            <NavigateControls id='nav-controls'>
+                <BlackIcon as={NavigateBeforeIcon} onClick={handlePrevImage} />                
+                <BlackIcon as={NavigateNextIcon} onClick={handleNextImage}/>                
+            </NavigateControls>
+        </Carrousel>
     )
 }
+const Carrousel = styled.div`
+    position: relative;
+`
 
 const ImageBox = styled.div`
     position: relative;
@@ -59,6 +74,7 @@ const ImageBox = styled.div`
     height: 250rem;
     overflow: scroll;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -73,14 +89,16 @@ const SliderImg = styled.img`
     min-width: 100%;
     object-fit: cover;
     scroll-snap-align: center;
+
+    &:hover{
+        cursor: pointer;
+    }
 `
 const NavigateControls = styled.div`
     display: flex;
+    gap: 20px;
     position: absolute;
+    bottom: 5rem;
     width: 100%;
-    bottom: 0;
     justify-content: center;
-`
-const Icon = styled(NavigateBeforeIcon)`
-    
 `
