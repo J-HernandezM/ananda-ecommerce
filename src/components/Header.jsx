@@ -1,7 +1,7 @@
 
 import { IconButton, InputBase, Paper } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import { Icon } from "../App";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
@@ -49,12 +49,12 @@ export default function Header({mobMenu, setMobMenu}) {
       </UpperHeader>
       <MainHeader>
         <>
-          <CartSVG as={MenuSVG} onClick={toggleMobileMenu}/>
+          <Icon as={MenuSVG} onClick={toggleMobileMenu}/>
           <Logo src={`${logo}`} alt="logo" onClick={navHome}/>
         </>
         <HeaderRight className="header-right">
           <SearchBar />
-          <CartSVG />
+          <Icon />
         </HeaderRight>
       </MainHeader>
       <Categories>
@@ -186,20 +186,6 @@ const LogoWhite = styled.img`
 const MenuSVG = styled(MenuIcon)`
   @media (min-width: 650px) {
     display: none;
-  }
-`
-
-const CartSVG = styled(ShoppingCartIcon)`
-  padding: 4rem;
-  border-radius: 20rem;
-  font-size: 34rem;
-  color: var(--primary-strong);
-  transition: .3s all ease;
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--primary-strong);
-    color: var(--white)
   }
 `
 
