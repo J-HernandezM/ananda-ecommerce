@@ -97,6 +97,7 @@ select {
   --primary: #dabad7;
   --regular-text: #3c3c3b;
   --white: #ffffff;
+  --bg: #
 
   --xs: 14rem;
   --sm: 16rem;
@@ -105,6 +106,8 @@ select {
   --xl: 26rem;
   font-size: 6.25%;
 
+  --error:#CF6679;
+  --bg:hsl(204, 43%, 93%);
 }
 
 a{
