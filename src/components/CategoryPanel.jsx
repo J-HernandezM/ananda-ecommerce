@@ -1,45 +1,86 @@
-import CategoryCard from "./CategoryCard";
+import { useRef, useState } from "react";
 import styled from "@emotion/styled";
+import CategoryCard from "./CategoryCard";
 import categories from "../data/categories";
 
 export default function CategoryPanel () {
+    const [drag, setDrag] = useState(false)
+    const [startX, setStartX] = useState()
+    const [scrollLeft, setScrollLeft] = useState()
+    const panelRef = useRef(null)
+
+
+    const initDrag = (e) => {
+        setDrag(true)
+        setStartX(e.pageX - panelRef.current.offsetLeft)
+        setScrollLeft(panelRef.current.scrollLeft)
+    }
+    const finaliceDrag = () => setDrag(false)
+    const handleDrag = (e) => {
+        e.preventDefault()
+        if(!drag){return}
+        const x = e.pageX - panelRef.current.offsetLeft
+        const walk = x - startX
+        panelRef.current.scrollLeft = scrollLeft - walk
+    }
+
     return(
-        <Wrapper>
-            <CategoryPanelBox>
-                        {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
-                        {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
-            </CategoryPanelBox>
-        </Wrapper>
+        <Panel>
+            <Title>Categorias</Title>
+            <Wrapper>
+                <CategoryPanelBox 
+                    ref={panelRef}
+                    onMouseDown={initDrag}
+                    onMouseUp={finaliceDrag}
+                    onMouseLeave={finaliceDrag}
+                    onMouseMove={(handleDrag)}
+                >
+                    {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
+                    {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
+                </CategoryPanelBox>
+            </Wrapper>
+        </Panel>
     )
 }
 
 const CategoryPanelBox = styled.div`
     display: flex;
-    position: relative;
     gap: 30rem;
-
-    padding: 30rem;
-    height: 400rem;
-    margin: 0 auto;
-
+    height: 340rem;
+    
     overflow: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-
+    
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    
     -ms-overflow-style: none;
     scrollbar-width: none;
     &::-webkit-scrollbar{
         display: none;
     }
-
-    /* @media (min-width: 1400px) {
-        justify-content: center;
-    } */
-`
+    
+    &:active{
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+    }
+    `
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+    padding: 0 30rem 30rem;
+    `
+
+const Title = styled.h2`
+    font-family: 'AbnormalN';
+    font-size: var(--xl);
+    text-align: center;
+    padding: 8rem 0;
+`
+
+const Panel = styled.div`
     background-color: var(--white);
 `
