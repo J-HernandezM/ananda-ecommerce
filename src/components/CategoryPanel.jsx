@@ -7,8 +7,8 @@ export default function CategoryPanel () {
     const [drag, setDrag] = useState(false)
     const [startX, setStartX] = useState()
     const [scrollLeft, setScrollLeft] = useState()
+    const [distance, setDistance] = useState()
     const panelRef = useRef(null)
-
 
     const initDrag = (e) => {
         setDrag(true)
@@ -21,6 +21,7 @@ export default function CategoryPanel () {
         if(!drag){return}
         const x = e.pageX - panelRef.current.offsetLeft
         const walk = x - startX
+        setDistance(Math.abs(walk))
         panelRef.current.scrollLeft = scrollLeft - walk
     }
 
@@ -33,10 +34,9 @@ export default function CategoryPanel () {
                     onMouseDown={initDrag}
                     onMouseUp={finaliceDrag}
                     onMouseLeave={finaliceDrag}
-                    onMouseMove={(handleDrag)}
+                    onMouseMove={handleDrag}
                 >
-                    {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
-                    {categories.map((category)=>(<CategoryCard key={category.slug} category={category}/>))}
+                    {categories.map((category)=>(<CategoryCard distance={distance} drag={drag} key={category.slug} category={category}/>))}
                 </CategoryPanelBox>
             </Wrapper>
         </Panel>
@@ -49,7 +49,6 @@ const CategoryPanelBox = styled.div`
     height: 340rem;
     
     overflow: scroll;
-    
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;

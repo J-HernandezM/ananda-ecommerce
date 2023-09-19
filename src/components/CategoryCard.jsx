@@ -4,12 +4,23 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-export default function CategoryCard({category}) {
+export default function CategoryCard({category, drag, distance}) {
   const navigate = useNavigate()
+  const [allowClick, setAllowClick] = useState(true)
+  
+  const handleClick = () => {
+    allowClick?navigate(`category/${category.slug}`):null
+  }
+  const handleMove = () => {
+    if(drag){
+      distance>100?setAllowClick(false):setAllowClick(true)
+    }else{setAllowClick(true)}
+  }
 
   return (
-    <StyledCard onClick={()=>{navigate(`category/${category.slug}`)}}>
+    <StyledCard onClick={handleClick} onMouseMove={handleMove}>
       <ActionArea>
         <CardImages
           component="img"
