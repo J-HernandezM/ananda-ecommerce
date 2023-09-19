@@ -50,6 +50,7 @@ body {
   line-height: 1.5;
   font-size: 16rem;
   height: 200vh;
+  background-color: var(--bg);
 }
 
 /* A elements that don't have a class get default styles */
@@ -107,7 +108,7 @@ select {
   font-size: 6.25%;
 
   --error:#CF6679;
-  --bg:hsl(204, 43%, 93%);
+  --bg: #FAF4F4;
 }
 
 a{

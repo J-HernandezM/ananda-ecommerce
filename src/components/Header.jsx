@@ -1,4 +1,3 @@
-
 import { IconButton, InputBase, Paper } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Icon } from "../App";
@@ -8,29 +7,8 @@ import styled from "@emotion/styled";
 import logo from "../assets/logo-sin-fondo.png"
 import logowhite from "../assets/logo-white.png"
 import MobileMenu from "./MobileMenu";
+import categories from "../data/categories";
 
-const categories = [
-  {
-    title: 'Limpieza facial',
-    slug: 'limpieza-facial'
-  },
-  {
-    title: 'Tratamientos',
-    slug: 'tratamientos'
-  },
-  {
-    title: 'Cremas y unguentos',
-    slug: 'cremas-y-unguentos'
-  },
-  {
-    title: 'Mascarillas',
-    slug: 'mascarillas'
-  },
-  {
-    title: 'Tienda',
-    slug: 'all'
-  }
-]
 export default function Header({mobMenu, setMobMenu}) {
   const navigate = useNavigate()
 
