@@ -16,6 +16,7 @@ header{
     height: 108rem;
 }
 
+
 @media (min-width: 650px) {
     header{
         height: 172rem;
