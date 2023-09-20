@@ -62,13 +62,17 @@ const CardTitle = styled(CardContent)`
 `
 
 const StyledCard = styled(Card)`
-  min-width: 250rem;
+  min-width: 172rem;
   height: 100%;
   background-color: transparent;
   scroll-snap-align: center;
-
+  
   &:hover .Category--card-title {
     max-height: 20%;
+  }
+  
+  @media (min-width: 600px) {
+    min-width: 250rem;
   }
 `
 

@@ -20,7 +20,7 @@ export default function CategoryPanel () {
         e.preventDefault()
         if(!drag){return}
         const x = e.pageX - panelRef.current.offsetLeft
-        const walk = x - startX
+        const walk = (x - startX)
         setDistance(Math.abs(walk))
         panelRef.current.scrollLeft = scrollLeft - walk
     }
@@ -45,8 +45,8 @@ export default function CategoryPanel () {
 
 const CategoryPanelBox = styled.div`
     display: flex;
-    gap: 30rem;
-    height: 340rem;
+    gap: 15rem;
+    height: 234rem;
     
     overflow: scroll;
     cursor: grab;
@@ -64,20 +64,33 @@ const CategoryPanelBox = styled.div`
         cursor: -moz-grabbing;
         cursor: -webkit-grabbing;
     }
-    `
+    @media (min-width: 600px){
+        height: 340rem;
+        gap: 30rem;
+    }
+`
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 0 30rem 30rem;
-    `
+    padding: 0 15rem 15rem;
+    
+    @media (min-width: 600px) {
+        padding: 0 30rem 30rem;
+    }
+`
 
 const Title = styled.h2`
     font-family: 'AbnormalN';
     font-size: var(--xl);
     text-align: center;
-    padding: 8rem 0;
+    padding: 0;
+    color: var(--secondary);
+    
+    @media (min-width: 600px) {
+        padding: 8rem 0;
+    }
 `
 
 const Panel = styled.div`
