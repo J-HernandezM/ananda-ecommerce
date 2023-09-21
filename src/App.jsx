@@ -34,10 +34,18 @@ function App() {
     <HashRouter>
       <Header mobMenu={mobMenu} setMobMenu={setMobMenu}/>
       <Routes>
-        <Route path='/' element={<MainContainer mobMenu={mobMenu}><Homepage /></MainContainer>}/>
-        <Route path='/category' element={<main>Category display</main>} />
-        <Route path='/category/:product' element={<main>Producto</main>} />
-        <Route path='*' element={<main>404 Not found</main>}/>
+        <Route path='/' element={<MainContainer mobMenu={mobMenu}>
+          <Homepage />
+        </MainContainer>}/>
+        <Route path='/category' element={<MainContainer>
+          <>Category display</>
+        </MainContainer>} />
+        <Route path='/category/:product' element={<MainContainer>
+          <>Producto</>
+        </MainContainer>} />
+        <Route path='*' element={<MainContainer>
+          <>404 Not found</>
+        </MainContainer>}/>
       </Routes>
 
       <Footer mobMenu={mobMenu}/>
