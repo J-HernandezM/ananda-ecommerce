@@ -98,9 +98,10 @@ select {
   --primary: #dabad7;
   --regular-text: #3c3c3b;
   --white: #ffffff;
-  --bg: #
+  --gray: #f0f2f7;
 
-  --xs: 14rem;
+  --xxs: 11rem;
+  --xs: 13rem;
   --sm: 16rem;
   --md: 18rem;
   --lg: 20rem;
@@ -116,18 +117,16 @@ a{
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 4rem;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: 'Abnormal6';
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: filter 0.3s ease;
+  background-color: var(--secondary);
+  color: var(--white);
 }
 button:hover {
-  border-color: #646cff;
+  filter: brightness(110%);
 }
 button:focus,
 button:focus-visible {

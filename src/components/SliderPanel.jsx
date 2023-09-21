@@ -29,7 +29,7 @@ export default function SliderPanel ({ type }) {
         <Panel type={type}>
             <Title>{type}</Title>
             <Wrapper>
-                <CategoryPanelBox 
+                <CategoryPanelBox type={type}
                     ref={panelRef}
                     onMouseDown={initDrag}
                     onMouseUp={finaliceDrag}
@@ -46,7 +46,7 @@ export default function SliderPanel ({ type }) {
 const CategoryPanelBox = styled.div`
     display: flex;
     gap: 15rem;
-    height: 234rem;
+    height: ${({type})=>type==='Categorias'?'234rem':'320rem'};
     
     overflow: scroll;
     cursor: grab;
@@ -65,7 +65,7 @@ const CategoryPanelBox = styled.div`
         cursor: -webkit-grabbing;
     }
     @media (min-width: 600px){
-        height: 340rem;
+        height: ${({type})=>type==='Categorias'?'340rem':'400rem'};
         gap: 30rem;
     }
 `
