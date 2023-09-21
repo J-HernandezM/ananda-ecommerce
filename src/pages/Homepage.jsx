@@ -1,4 +1,4 @@
-import CategoryPanel from "../components/CategoryPanel";
+import SliderPanel from "../components/SliderPanel";
 import ImageSlider from "../components/ImageSlider";
 
 
@@ -6,7 +6,8 @@ export default function Homepage () {
     return(
         <>
             <ImageSlider />
-            <CategoryPanel />
+            <SliderPanel type = {'Categorias'} />
+            <SliderPanel type = {'Destacados'}/>
         </>
     )
 }

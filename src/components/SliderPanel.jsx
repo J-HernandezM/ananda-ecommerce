@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import styled from "@emotion/styled";
-import CategoryCard from "./CategoryCard";
+import HomeCard from "./HomeCard";
 import categories from "../data/categories";
 
-export default function CategoryPanel () {
+export default function SliderPanel ({ type }) {
     const [drag, setDrag] = useState(false)
     const [startX, setStartX] = useState()
     const [scrollLeft, setScrollLeft] = useState()
@@ -26,8 +26,8 @@ export default function CategoryPanel () {
     }
 
     return(
-        <Panel>
-            <Title>Categorias</Title>
+        <Panel type={type}>
+            <Title>{type}</Title>
             <Wrapper>
                 <CategoryPanelBox 
                     ref={panelRef}
@@ -36,7 +36,7 @@ export default function CategoryPanel () {
                     onMouseLeave={finaliceDrag}
                     onMouseMove={handleDrag}
                 >
-                    {categories.map((category)=>(<CategoryCard distance={distance} drag={drag} key={category.slug} category={category}/>))}
+                    {categories.map((category)=>(<HomeCard type={type} distance={distance} drag={drag} key={category.slug} category={category}/>))}
                 </CategoryPanelBox>
             </Wrapper>
         </Panel>
@@ -92,7 +92,6 @@ const Title = styled.h2`
         padding: 8rem 0;
     }
 `
-
 const Panel = styled.div`
-    background-color: var(--white);
+    background-color: ${({type})=>(type==='Categorias'?'var(--white)':'var(--bg)')};
 `
