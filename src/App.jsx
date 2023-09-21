@@ -40,7 +40,7 @@ function App() {
         <Route path='*' element={<main>404 Not found</main>}/>
       </Routes>
 
-      <Footer />
+      <Footer mobMenu={mobMenu}/>
     </HashRouter>
   )
 }
