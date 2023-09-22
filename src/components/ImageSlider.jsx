@@ -50,56 +50,67 @@ export default function ImageSlider() {
             if(imageBox.current){
                 let firstClone = imageBox.current.firstChild.cloneNode()
                 imageBox.current.append(firstClone)
-                console.log(imageBox.current.childNodes)
             }
         }    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     , [])
 
     const startSlider = () => {
-        sliderId = setInterval(()=>{
-            if(imageBox.current){
-                if(index < imageBox.current.childNodes.length){
-                    if(!imageBox.current.classList.contains('scroll--smooth')){
-                        imageBox.current.classList.add('scroll--smooth')
-                    }
-                    index++
-                    imageBox.current.scrollBy(1, 0)
-                }else {
-                    index = 1
-                    imageBox.current.classList.remove('scroll--smooth')
-                    imageBox.current.scrollTo(0, 0)
-                }
-            }
-        }, 3000)
+        sliderId = setInterval(slideForward, 3000)
     }
-    
-
     const stopSlider = () => {
         clearInterval(sliderId)
     }
-    const handleNextImage = (e) => {
-        e.target.closest('#nav-controls').previousElementSibling.scrollBy(1, 0);
+    const slideForward = () => {
+        if(imageBox.current){
+            if(index < imageBox.current.childNodes.length){
+                if(!imageBox.current.classList.contains('scroll--smooth')){
+                    imageBox.current.classList.add('scroll--smooth')
+                }
+                index++
+                imageBox.current.scrollBy(1, 0)
+            }else {
+                index = 1
+                imageBox.current.classList.remove('scroll--smooth')
+                imageBox.current.scrollTo(0, 0)
+            }
+        }
     }
-    const handlePrevImage = (e) => {
-        e.target.closest('#nav-controls').previousElementSibling.scrollBy(-1, 0);
+    const slideBackwards = (e) => {
+        if(index>1){
+            index--
+            e.target.closest('#nav-controls').previousElementSibling.scrollBy(-1, 0);
+        }
     }
-
     const BlackIcon = styled(Icon)`
-        color: black;
-    `
+        position: absolute;
+        top: 50%;
+        right: 10rem;
+        color: var(--secondary);
+        transform: translateY(-50%);
+        transform-origin: center;
+        padding: 0;
+        font-size: 24rem;
+    &:hover{
+        background-color: transparent;
+        color: var(--secondary);
+        transform: translateY(-50%) scale(1.5);
+    }
+`
 
     return(
         <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
             <ImageBox className="scroll--smooth" ref={imageBox}>
                 {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
             </ImageBox>
-            <NavigateControls id='nav-controls'>
-                <BlackIcon as={NavigateBeforeIcon} onClick={handlePrevImage} />                
-                <BlackIcon as={NavigateNextIcon} onClick={handleNextImage}/>                
-            </NavigateControls>
+            <div id='nav-controls'>
+                <BlackIcon as={LeftIcon} onClick={slideBackwards} />                
+                <BlackIcon as={NavigateNextIcon} onClick={slideForward}/>                
+            </div>
         </Carrousel>
     )
 }
+
 const Carrousel = styled.div`
     position: relative;
 `
@@ -130,11 +141,7 @@ const SliderImg = styled.img`
         cursor: pointer;
     }
 `
-const NavigateControls = styled.div`
-    display: flex;
-    gap: 20px;
-    position: absolute;
-    bottom: 5rem;
-    width: 100%;
-    justify-content: center;
+
+const LeftIcon = styled(NavigateBeforeIcon)`
+    left: 10rem;
 `
