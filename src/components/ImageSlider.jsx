@@ -9,6 +9,7 @@ import tratamientos from '../assets/c-tratamientos.jpg'
 import mascarillas from '../assets/c-mascarillas.jpg'
 import unguentos from '../assets/c-unguentos.jpg'
 import limpieza2 from '../assets/c-limpieza2.jpg'
+import { useEffect, useRef } from "react";
 
 const images = [
     {
@@ -39,6 +40,36 @@ const images = [
 ]
 export default function ImageSlider() {
     const navigate = useNavigate()
+    const imageBox = useRef()
+    let index = 1
+
+    useEffect(
+        ()=>{
+            if(imageBox.current){
+                let firstClone = imageBox.current.firstChild.cloneNode()
+                imageBox.current.append(firstClone)
+                console.log(imageBox.current.childNodes)
+            }
+        }    
+    ,[])
+
+    setInterval(()=>{
+        if(imageBox.current){
+            if(index < imageBox.current.childNodes.length){
+                if(!imageBox.current.classList.contains('scroll--smooth')){
+                    imageBox.current.classList.add('scroll--smooth')
+                }
+                index++
+                imageBox.current.scrollBy(1, 0)
+            }else {
+                index = 1
+                imageBox.current.classList.remove('scroll--smooth')
+                imageBox.current.scrollTo(0, 0)
+            }
+        }
+    }, 3000)
+
+
 
     const handleNextImage = (e) => {
         e.target.closest('#nav-controls').previousElementSibling.scrollBy(1, 0);
@@ -53,7 +84,7 @@ export default function ImageSlider() {
 
     return(
         <Carrousel>
-            <ImageBox>
+            <ImageBox className="scroll--smooth" ref={imageBox}>
                 {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
             </ImageBox>
             <NavigateControls id='nav-controls'>
@@ -74,7 +105,6 @@ const ImageBox = styled.div`
     height: 250rem;
     overflow: scroll;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
 
     -ms-overflow-style: none;
     scrollbar-width: none;
