@@ -42,35 +42,41 @@ export default function ImageSlider() {
     const navigate = useNavigate()
     const imageBox = useRef()
     let index = 1
+    let sliderId
 
     useEffect(
         ()=>{
+            startSlider()
             if(imageBox.current){
                 let firstClone = imageBox.current.firstChild.cloneNode()
                 imageBox.current.append(firstClone)
                 console.log(imageBox.current.childNodes)
             }
         }    
-    ,[])
+    , [])
 
-    setInterval(()=>{
-        if(imageBox.current){
-            if(index < imageBox.current.childNodes.length){
-                if(!imageBox.current.classList.contains('scroll--smooth')){
-                    imageBox.current.classList.add('scroll--smooth')
+    const startSlider = () => {
+        sliderId = setInterval(()=>{
+            if(imageBox.current){
+                if(index < imageBox.current.childNodes.length){
+                    if(!imageBox.current.classList.contains('scroll--smooth')){
+                        imageBox.current.classList.add('scroll--smooth')
+                    }
+                    index++
+                    imageBox.current.scrollBy(1, 0)
+                }else {
+                    index = 1
+                    imageBox.current.classList.remove('scroll--smooth')
+                    imageBox.current.scrollTo(0, 0)
                 }
-                index++
-                imageBox.current.scrollBy(1, 0)
-            }else {
-                index = 1
-                imageBox.current.classList.remove('scroll--smooth')
-                imageBox.current.scrollTo(0, 0)
             }
-        }
-    }, 3000)
+        }, 3000)
+    }
+    
 
-
-
+    const stopSlider = () => {
+        clearInterval(sliderId)
+    }
     const handleNextImage = (e) => {
         e.target.closest('#nav-controls').previousElementSibling.scrollBy(1, 0);
     }
@@ -83,7 +89,7 @@ export default function ImageSlider() {
     `
 
     return(
-        <Carrousel>
+        <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
             <ImageBox className="scroll--smooth" ref={imageBox}>
                 {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
             </ImageBox>
