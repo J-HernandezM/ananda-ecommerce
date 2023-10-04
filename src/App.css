@@ -21,6 +21,10 @@ header{
 .scroll--mandatory{
     scroll-snap-type: x mandatory;
 }
+.gap10{
+    display: flex;
+    gap: 10rem;
+}
 
 @media (min-width: 650px) {
     header{
