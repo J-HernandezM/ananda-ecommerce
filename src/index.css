@@ -25,9 +25,21 @@ ol[role='list'] {
   list-style: none;
 }
 
+li{
+  list-style: none;
+}
+
+ul, ol{
+  margin: 0;
+  padding: 0;
+}
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
+}
+.margin{
+  margin-top: 500px;
 }
 
 /* Set core body defaults */
@@ -37,7 +49,8 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-size: 16rem;
-  height: 50vh;
+  height: 200vh;
+  background-color: var(--bg);
 }
 
 /* A elements that don't have a class get default styles */
@@ -75,11 +88,9 @@ select {
     scroll-behavior: auto !important;
   }
 }
-
 /* my shit */
-
 :root {
-  font-family: 'Myriad Pro';
+  font-family: 'Abnormal';
 
   --primary-light: #dbcbe1;
   --primary-strong: #84719c;
@@ -87,6 +98,7 @@ select {
   --primary: #dabad7;
   --regular-text: #3c3c3b;
   --white: #ffffff;
+  --bg: #
 
   --xs: 14rem;
   --sm: 16rem;
@@ -95,15 +107,12 @@ select {
   --xl: 26rem;
   font-size: 6.25%;
 
+  --error:#CF6679;
+  --bg: #FAF4F4;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+a{
+  text-decoration: none;
 }
 
 button {

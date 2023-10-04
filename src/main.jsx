@@ -13,6 +13,15 @@ import './fonts/Selfie-Light.woff2'
 import './fonts/Vogue-Regular.woff'
 import './fonts/Vogue-Regular.woff2'
 import './index.css'
+import './fonts.css'
+
+const customTheme = createTheme({
+  typography: {
+    fontSize: '16rem',
+  }
+})
+
+console.clear()
 
 const customTheme = createTheme({
   typography: {
