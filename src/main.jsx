@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { ThemeProvider, createTheme } from '@mui/material'
@@ -25,7 +24,6 @@ console.clear()
 
 const customTheme = createTheme({
   typography: {
-    fontFamily: 'Myriad Pro',
     fontSize: '16rem',
   }
 })
@@ -33,9 +31,7 @@ const customTheme = createTheme({
 console.clear()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <ThemeProvider theme={customTheme}>
       <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
 )

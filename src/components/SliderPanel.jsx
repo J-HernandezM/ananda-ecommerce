@@ -1,3 +1,5 @@
+
+import { useRef, useState, useEffect } from "react";
 import { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import HomeCard from "./HomeCard";
@@ -10,10 +12,39 @@ export default function SliderPanel ({ type }) {
     const [distance, setDistance] = useState()
     const panelRef = useRef(null)
 
+    let index = 1
+    let sliderId
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(()=>{startSlider()}, [])
+
+    const startSlider = () => {
+        sliderId = setInterval(()=>{
+            if(panelRef.current){
+                if(index < panelRef.current.childNodes.length){
+                    index++
+                    panelRef.current.scrollBy(100, 0)
+                }else {
+                    index = 1
+                    panelRef.current.scrollTo(0, 0)
+                }
+            }
+        }, 3000)
+    }
+    const stopSlider = () => {
+        clearInterval(sliderId)
+    }
+
+    const initDrag = (e) => {
+        e.target.classList.remove('scroll--mandatory')
     const initDrag = (e) => {
         setDrag(true)
         setStartX(e.pageX - panelRef.current.offsetLeft)
         setScrollLeft(panelRef.current.scrollLeft)
+    }
+    const finaliceDrag = (e) => {
+        e.target.classList.add('scroll--mandatory')
+        setDrag(false)
     }
     const finaliceDrag = () => setDrag(false)
     const handleDrag = (e) => {
@@ -24,6 +55,12 @@ export default function SliderPanel ({ type }) {
         setDistance(Math.abs(walk))
         panelRef.current.scrollLeft = scrollLeft - walk
     }
+    
+    return(
+        <Panel type={type}>
+            <Title>{type}</Title>
+            <Wrapper onMouseLeave={startSlider} onMouseEnter={stopSlider}>
+                <CategoryPanelBox className="scroll--mandatory scroll--smooth" type={type}
 
     return(
         <Panel type={type}>
@@ -46,6 +83,7 @@ export default function SliderPanel ({ type }) {
 const CategoryPanelBox = styled.div`
     display: flex;
     gap: 15rem;
+    height: ${({type})=>type==='Categorias'?'234rem':'320rem'};
     height: 234rem;
     
     overflow: scroll;
@@ -65,6 +103,7 @@ const CategoryPanelBox = styled.div`
         cursor: -webkit-grabbing;
     }
     @media (min-width: 600px){
+        height: ${({type})=>type==='Categorias'?'340rem':'400rem'};
         height: 340rem;
         gap: 30rem;
     }
