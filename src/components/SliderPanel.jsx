@@ -1,4 +1,6 @@
+
 import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import HomeCard from "./HomeCard";
 import categories from "../data/categories";
@@ -35,6 +37,7 @@ export default function SliderPanel ({ type }) {
 
     const initDrag = (e) => {
         e.target.classList.remove('scroll--mandatory')
+    const initDrag = (e) => {
         setDrag(true)
         setStartX(e.pageX - panelRef.current.offsetLeft)
         setScrollLeft(panelRef.current.scrollLeft)
@@ -43,6 +46,7 @@ export default function SliderPanel ({ type }) {
         e.target.classList.add('scroll--mandatory')
         setDrag(false)
     }
+    const finaliceDrag = () => setDrag(false)
     const handleDrag = (e) => {
         e.preventDefault()
         if(!drag){return}
@@ -57,6 +61,12 @@ export default function SliderPanel ({ type }) {
             <Title>{type}</Title>
             <Wrapper onMouseLeave={startSlider} onMouseEnter={stopSlider}>
                 <CategoryPanelBox className="scroll--mandatory scroll--smooth" type={type}
+
+    return(
+        <Panel type={type}>
+            <Title>{type}</Title>
+            <Wrapper>
+                <CategoryPanelBox 
                     ref={panelRef}
                     onMouseDown={initDrag}
                     onMouseUp={finaliceDrag}
@@ -74,6 +84,7 @@ const CategoryPanelBox = styled.div`
     display: flex;
     gap: 15rem;
     height: ${({type})=>type==='Categorias'?'234rem':'320rem'};
+    height: 234rem;
     
     overflow: scroll;
     cursor: grab;
@@ -93,6 +104,7 @@ const CategoryPanelBox = styled.div`
     }
     @media (min-width: 600px){
         height: ${({type})=>type==='Categorias'?'340rem':'400rem'};
+        height: 340rem;
         gap: 30rem;
     }
 `

@@ -36,6 +36,11 @@ export default function Footer ({mobMenu}) {
                 </FooterPanel>
             </FooterStart>
             <FooterEnd className="abajo">Desarrollado por:&nbsp;<a href="https://github.com/J-HernandezM">Juan Jose Hernandez</a></FooterEnd>
+
+export default function Footer () {
+    return(
+        <StyledFooter>
+            Este es el footer
         </StyledFooter>
     )
 }
@@ -149,4 +154,5 @@ const Slogan = styled.p`
     max-width: 410rem;
     min-width: 310rem;
     margin-top: -20rem;
+    border: 1px solid red
 `

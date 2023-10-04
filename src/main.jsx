@@ -22,6 +22,14 @@ const customTheme = createTheme({
 
 console.clear()
 
+const customTheme = createTheme({
+  typography: {
+    fontSize: '16rem',
+  }
+})
+
+console.clear()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={customTheme}>
       <App />

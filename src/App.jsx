@@ -6,6 +6,13 @@ import Header from './components/Header'
 import Homepage from './pages/Homepage'
 import Footer from './components/Footer'
 import './App.css'
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import styled from '@emotion/styled'
+import Header from './components/Header'
+import Homepage from './pages/Homepage'
+import Footer from './components/Footer'
+import './App.css'
 
 const MainContainer = styled.main`
   transition: .3s all;
@@ -20,6 +27,14 @@ export const Icon = styled(ShoppingCartIcon)`
   font-size: 34rem;
   color: var(--primary-strong);
   transition: .3s all ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-strong);
+    color: var(--white)
+  }
+`
+
 
   &:hover {
     cursor: pointer;
@@ -46,6 +61,10 @@ function App() {
         <Route path='*' element={<MainContainer>
           <>404 Not found</>
         </MainContainer>}/>
+        <Route path='/' element={<MainContainer mobMenu={mobMenu}><Homepage /></MainContainer>}/>
+        <Route path='/category' element={<main>Category display</main>} />
+        <Route path='/category/:product' element={<main>Producto</main>} />
+        <Route path='*' element={<main>404 Not found</main>}/>
       </Routes>
 
       <Footer mobMenu={mobMenu}/>

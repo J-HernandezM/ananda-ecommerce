@@ -49,6 +49,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-size: 16rem;
+  height: 200vh;
   background-color: var(--bg);
 }
 
@@ -98,6 +99,7 @@ select {
   --regular-text: #3c3c3b;
   --white: #ffffff;
   --gray: #f0f2f7;
+  --bg: #
 
   --xxs: 11rem;
   --xs: 13rem;
