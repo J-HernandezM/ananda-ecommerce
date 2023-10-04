@@ -9,6 +9,7 @@ import tratamientos from '../assets/c-tratamientos.jpg'
 import mascarillas from '../assets/c-mascarillas.jpg'
 import unguentos from '../assets/c-unguentos.jpg'
 import limpieza2 from '../assets/c-limpieza2.jpg'
+import { useEffect, useRef } from "react";
 
 const images = [
     {
@@ -39,30 +40,77 @@ const images = [
 ]
 export default function ImageSlider() {
     const navigate = useNavigate()
+    const imageBox = useRef()
+    let index = 1
+    let sliderId
 
-    const handleNextImage = (e) => {
-        e.target.closest('#nav-controls').previousElementSibling.scrollBy(1, 0);
-    }
-    const handlePrevImage = (e) => {
-        e.target.closest('#nav-controls').previousElementSibling.scrollBy(-1, 0);
-    }
+    useEffect(
+        ()=>{
+            startSlider()
+            if(imageBox.current){
+                let firstClone = imageBox.current.firstChild.cloneNode()
+                imageBox.current.append(firstClone)
+            }
+        }    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [])
 
+    const startSlider = () => {
+        sliderId = setInterval(slideForward, 3000)
+    }
+    const stopSlider = () => {
+        clearInterval(sliderId)
+    }
+    const slideForward = () => {
+        if(imageBox.current){
+            if(index < imageBox.current.childNodes.length){
+                if(!imageBox.current.classList.contains('scroll--smooth')){
+                    imageBox.current.classList.add('scroll--smooth')
+                }
+                index++
+                imageBox.current.scrollBy(1, 0)
+            }else {
+                index = 1
+                imageBox.current.classList.remove('scroll--smooth')
+                imageBox.current.scrollTo(0, 0)
+            }
+        }
+    }
+    const slideBackwards = (e) => {
+        if(index>1){
+            index--
+            e.target.closest('#nav-controls').previousElementSibling.scrollBy(-1, 0);
+        }
+    }
     const BlackIcon = styled(Icon)`
-        color: black;
-    `
+        position: absolute;
+        top: 50%;
+        right: 10rem;
+        color: var(--secondary);
+        transform: translateY(-50%);
+        transform-origin: center;
+        padding: 0;
+        font-size: 24rem;
+    &:hover{
+        background-color: transparent;
+        color: var(--secondary);
+        transform: translateY(-50%) scale(1.5);
+    }
+`
 
     return(
-        <Carrousel>
-            <ImageBox>
+        <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
+            <ImageBox className="scroll--smooth" ref={imageBox}>
                 {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
             </ImageBox>
-            <NavigateControls id='nav-controls'>
-                <BlackIcon as={NavigateBeforeIcon} onClick={handlePrevImage} />                
-                <BlackIcon as={NavigateNextIcon} onClick={handleNextImage}/>                
-            </NavigateControls>
+            <div id='nav-controls'>
+                <BlackIcon as={LeftIcon} onClick={slideBackwards} />                
+                <BlackIcon as={NavigateNextIcon} onClick={slideForward}/>                
+            </div>
         </Carrousel>
     )
 }
+
 const Carrousel = styled.div`
     position: relative;
 `
@@ -74,7 +122,6 @@ const ImageBox = styled.div`
     height: 250rem;
     overflow: scroll;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
 
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -94,11 +141,7 @@ const SliderImg = styled.img`
         cursor: pointer;
     }
 `
-const NavigateControls = styled.div`
-    display: flex;
-    gap: 20px;
-    position: absolute;
-    bottom: 5rem;
-    width: 100%;
-    justify-content: center;
+
+const LeftIcon = styled(NavigateBeforeIcon)`
+    left: 10rem;
 `

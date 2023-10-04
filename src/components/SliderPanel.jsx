@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import HomeCard from "./HomeCard";
 import categories from "../data/categories";
@@ -10,12 +10,39 @@ export default function SliderPanel ({ type }) {
     const [distance, setDistance] = useState()
     const panelRef = useRef(null)
 
+    let index = 1
+    let sliderId
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(()=>{startSlider()}, [])
+
+    const startSlider = () => {
+        sliderId = setInterval(()=>{
+            if(panelRef.current){
+                if(index < panelRef.current.childNodes.length){
+                    index++
+                    panelRef.current.scrollBy(100, 0)
+                }else {
+                    index = 1
+                    panelRef.current.scrollTo(0, 0)
+                }
+            }
+        }, 3000)
+    }
+    const stopSlider = () => {
+        clearInterval(sliderId)
+    }
+
     const initDrag = (e) => {
+        e.target.classList.remove('scroll--mandatory')
         setDrag(true)
         setStartX(e.pageX - panelRef.current.offsetLeft)
         setScrollLeft(panelRef.current.scrollLeft)
     }
-    const finaliceDrag = () => setDrag(false)
+    const finaliceDrag = (e) => {
+        e.target.classList.add('scroll--mandatory')
+        setDrag(false)
+    }
     const handleDrag = (e) => {
         e.preventDefault()
         if(!drag){return}
@@ -24,12 +51,12 @@ export default function SliderPanel ({ type }) {
         setDistance(Math.abs(walk))
         panelRef.current.scrollLeft = scrollLeft - walk
     }
-
+    
     return(
         <Panel type={type}>
             <Title>{type}</Title>
-            <Wrapper>
-                <CategoryPanelBox type={type}
+            <Wrapper onMouseLeave={startSlider} onMouseEnter={stopSlider}>
+                <CategoryPanelBox className="scroll--mandatory scroll--smooth" type={type}
                     ref={panelRef}
                     onMouseDown={initDrag}
                     onMouseUp={finaliceDrag}

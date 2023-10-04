@@ -15,7 +15,12 @@ header{
     z-index: 9;
     height: 108rem;
 }
-
+.scroll--smooth{
+    scroll-behavior: smooth;
+}
+.scroll--mandatory{
+    scroll-snap-type: x mandatory;
+}
 
 @media (min-width: 650px) {
     header{
