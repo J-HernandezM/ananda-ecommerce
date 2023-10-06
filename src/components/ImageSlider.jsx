@@ -85,12 +85,12 @@ export default function ImageSlider() {
     const BlackIcon = styled(Icon)`
         position: absolute;
         top: 50%;
-        right: 10rem;
+        right: 10px;
         color: var(--secondary);
         transform: translateY(-50%);
         transform-origin: center;
         padding: 0;
-        font-size: 24rem;
+        font-size: 24px;
     &:hover{
         background-color: transparent;
         color: var(--secondary);
@@ -119,7 +119,7 @@ const ImageBox = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    height: 250rem;
+    height: 250px;
     overflow: scroll;
     scroll-snap-type: x mandatory;
 
@@ -129,7 +129,7 @@ const ImageBox = styled.div`
         display: none;
     }
     @media (min-width: 650px) {
-        height: 500rem
+        height: 500px
     }
 `
 const SliderImg = styled.img`
@@ -143,5 +143,5 @@ const SliderImg = styled.img`
 `
 
 const LeftIcon = styled(NavigateBeforeIcon)`
-    left: 10rem;
+    left: 10px;
 `

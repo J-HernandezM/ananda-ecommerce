@@ -16,7 +16,7 @@ import './fonts.css'
 
 const customTheme = createTheme({
   typography: {
-    fontSize: '16rem',
+    fontSize: '16px',
   }
 })
 

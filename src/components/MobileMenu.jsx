@@ -22,10 +22,10 @@ const MobileWrapper = styled.ul`
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 8rem;
+    gap: 8px;
 
     width: 100%;
-    padding: 20rem;
+    padding: 20px;
     background-color: var(--primary-strong);
 
     transition: .3s all ease;

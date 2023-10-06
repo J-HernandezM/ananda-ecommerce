@@ -72,8 +72,8 @@ export default function SliderPanel ({ type }) {
 
 const CategoryPanelBox = styled.div`
     display: flex;
-    gap: 15rem;
-    height: ${({type})=>type==='Categorias'?'234rem':'320rem'};
+    gap: 15px;
+    height: ${({type})=>type==='Categorias'?'234px':'320px'};
     
     overflow: scroll;
     cursor: grab;
@@ -92,8 +92,8 @@ const CategoryPanelBox = styled.div`
         cursor: -webkit-grabbing;
     }
     @media (min-width: 600px){
-        height: ${({type})=>type==='Categorias'?'340rem':'400rem'};
-        gap: 30rem;
+        height: ${({type})=>type==='Categorias'?'340px':'400px'};
+        gap: 30px;
     }
 `
 
@@ -101,10 +101,10 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 0 15rem 15rem;
+    padding: 0 15px 15px;
     
     @media (min-width: 600px) {
-        padding: 0 30rem 30rem;
+        padding: 0 30px 30px;
     }
 `
 
@@ -116,7 +116,7 @@ const Title = styled.h2`
     color: var(--secondary);
     
     @media (min-width: 600px) {
-        padding: 8rem 0;
+        padding: 8px 0;
     }
 `
 const Panel = styled.div`

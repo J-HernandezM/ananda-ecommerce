@@ -45,29 +45,29 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-direction: column;
     transition: .3s all;
-    transform: translateY(${props=>props.mobMenu?'300rem':'108rem'});
+    transform: translateY(${props=>props.mobMenu?'300px':'108px'});
     @media (min-width: 650px) {
-        transform: translateY(172rem);
+        transform: translateY(172px);
     }
     `
 const FooterStart = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20rem;
-    padding: 0 20rem;
+    gap: 20px;
+    padding: 0 20px;
     font-family: 'AbnormalN';
     color: var(--regular-text);
     background-color: var(--primary-light);
 
     & .panel:nth-of-type(1), .panel:nth-of-type(2){
         border-bottom: 1px solid var(--primary-strong);
-        padding-bottom: 20rem;
+        padding-bottom: 20px;
     }
 
     @media (min-width: 650px) {
         flex-direction: row;
         gap: 0;
-        padding: 0 30rem;
+        padding: 0 30px;
         justify-content: space-between;
         & .panel:nth-of-type(1), .panel:nth-of-type(2){
             border: none;
@@ -76,8 +76,8 @@ const FooterStart = styled.div`
         & .panel:nth-of-type(2), .panel:nth-of-type(3) {
             border-left: 1px solid var(--secondary);
             justify-content: center;
-            height: 180rem;
-            padding: 0 10rem;
+            height: 180px;
+            padding: 0 10px;
         }
     }
 `
@@ -98,7 +98,7 @@ const FooterPanel = styled.div`
     align-items: center;
 
     & div p:last-child{
-        margin-bottom: 10rem;
+        margin-bottom: 10px;
     }
 
     @media (min-width: 650px) {
@@ -109,17 +109,17 @@ const FooterLogo = styled.img`
     position: relative;
     z-index: 2;
     width: 50%;
-    max-width: 310rem;
-    min-width: 250rem;
+    max-width: 310px;
+    min-width: 250px;
     @media (min-width: 650px) {
-        margin-top: -80rem;
+        margin-top: -80px;
     }
 `
 
 const SocialMediaIcon = styled(WhatsAppIcon)`
-    font-size: 34rem;
+    font-size: 34px;
     color: var(--secondary);
-    margin-top: 10rem;
+    margin-top: 10px;
     transform: scale(1);
     transition: transform .3s;
     &:hover{
@@ -142,11 +142,11 @@ const FooterAction = styled.p`
 `
 const Wave = styled.img`
     position: relative;
-    top: 2rem;
-    max-height: 250rem;
+    top: 2px;
+    max-height: 250px;
 `
 const Slogan = styled.p`
-    max-width: 410rem;
-    min-width: 310rem;
-    margin-top: -20rem;
+    max-width: 410px;
+    min-width: 310px;
+    margin-top: -20px;
 `
