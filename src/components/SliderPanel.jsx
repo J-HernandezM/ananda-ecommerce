@@ -79,7 +79,7 @@ export default function SliderPanel ({ type }) {
                     // onPointerLeave={finaliceDrag}
                     onPointerMove={handleDrag}
                 >
-                    {categories.map((category)=>(<HomeCard type={type} distance={distance} drag={drag} key={category.slug} category={category}/>))}
+                    {categories.map((category)=>(<HomeCard type={type} distance={distance} drag={drag} key={category.slug} category={category} setAutoSlide={setAutoSlide}/>))}
                 </CategoryPanelBox>
             </Wrapper>
         </Panel>

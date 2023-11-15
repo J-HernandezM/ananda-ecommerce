@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function HomeCard({category, drag, distance, type}) {
+export default function HomeCard({category, drag, distance, type, setAutoSlide}) {
   const navigate = useNavigate()
   const [allowClick, setAllowClick] = useState(true)
   const customId = category.slug
@@ -36,6 +36,7 @@ export default function HomeCard({category, drag, distance, type}) {
           category={category} 
           handleMove={handleMove} 
           handleClick={handleClick}
+          setAutoSlide={setAutoSlide}
         />
       )
 
@@ -63,7 +64,11 @@ function CategoryCard ({category, handleMove, handleClick}) {
   )
 }
 
-function ProductCard ({customId, category, handleMove, handleClick}) {
+function ProductCard ({customId, category, handleMove, handleClick, setAutoSlide}) {
+  const disableAutoSlide = () => {
+    setAutoSlide(false)
+  }
+  
   return(
     <>
           <StyledCardF onMouseMove={handleMove}>
@@ -80,21 +85,21 @@ function ProductCard ({customId, category, handleMove, handleClick}) {
               <CardTitleF> {category.title} </CardTitleF>
               <CardPrice>$ 16.000</CardPrice>
               <QuantityBox>
-                <ProductLabel htmlFor={`x1${customId}`}>1 x $ 16.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x1${customId}`}>1 x $ 16.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x1${customId}`} 
                     type='radio' 
                   />
                 </ProductLabel>
-                <ProductLabel htmlFor={`x2${customId}`}>2 x $28.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x2${customId}`}>2 x $28.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x2${customId}`} 
                     type='radio' 
                   />
                 </ProductLabel>
-                <ProductLabel htmlFor={`x12${customId}`}>12 x $ 108.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x12${customId}`}>12 x $ 108.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x12${customId}`} 
