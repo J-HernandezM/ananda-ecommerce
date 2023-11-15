@@ -5,6 +5,7 @@ import categories from "../data/categories";
 
 export default function SliderPanel ({ type }) {
     const [drag, setDrag] = useState(false)
+    const [autoSlide, setAutoSlide] = useState(true)
     const [startX, setStartX] = useState()
     const [scrollLeft, setScrollLeft] = useState()
     const [distance, setDistance] = useState()
@@ -13,8 +14,16 @@ export default function SliderPanel ({ type }) {
     let index = 1
     let sliderId
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(()=>{startSlider()}, [])
+    /* eslint-disable */
+    useEffect(()=>{
+        if(autoSlide && !drag){
+            startSlider()
+        }else{
+            stopSlider()
+        }
+        return () => clearInterval(sliderId)
+    }, [drag, autoSlide])
+    /* eslint-enable */
 
     const startSlider = () => {
         sliderId = setInterval(()=>{
@@ -27,13 +36,15 @@ export default function SliderPanel ({ type }) {
                     panelRef.current.scrollTo(0, 0)
                 }
             }
-        }, 3000)
+        }, 4000)
     }
     const stopSlider = () => {
         clearInterval(sliderId)
     }
-
+    
     const initDrag = (e) => {
+        setAutoSlide(false)
+        stopSlider()
         e.target.classList.remove('scroll--mandatory', 'scroll--smooth')
         setDrag(true)
         setStartX(e.pageX - panelRef.current.offsetLeft)
@@ -42,6 +53,7 @@ export default function SliderPanel ({ type }) {
     const finaliceDrag = (e) => {
         e.target.classList.add('scroll--mandatory', 'scroll--smooth')
         setDrag(false)
+        setAutoSlide(true)
     }
     const handleDrag = (e) => {
         e.preventDefault()
@@ -55,13 +67,17 @@ export default function SliderPanel ({ type }) {
     return(
         <Panel type={type}>
             <Title>{type}</Title>
-            <Wrapper onMouseLeave={startSlider} onMouseEnter={stopSlider}>
+            <Wrapper 
+                onPointerLeave={()=>{setAutoSlide(true)}} 
+                onPointerEnter={()=>{setAutoSlide(false)}}
+            >
                 <CategoryPanelBox className="scroll--mandatory scroll--smooth" type={type}
                     ref={panelRef}
-                    onMouseDown={initDrag}
-                    onMouseUp={finaliceDrag}
-                    onMouseLeave={finaliceDrag}
-                    onMouseMove={handleDrag}
+                    onPointerDown={initDrag}
+                    onPointerUp={finaliceDrag}
+                    onTouchEnd={finaliceDrag}
+                    // onPointerLeave={finaliceDrag}
+                    onPointerMove={handleDrag}
                 >
                     {categories.map((category)=>(<HomeCard type={type} distance={distance} drag={drag} key={category.slug} category={category}/>))}
                 </CategoryPanelBox>
