@@ -34,13 +34,13 @@ export default function SliderPanel ({ type }) {
     }
 
     const initDrag = (e) => {
-        e.target.classList.remove('scroll--mandatory')
+        e.target.classList.remove('scroll--mandatory', 'scroll--smooth')
         setDrag(true)
         setStartX(e.pageX - panelRef.current.offsetLeft)
         setScrollLeft(panelRef.current.scrollLeft)
     }
     const finaliceDrag = (e) => {
-        e.target.classList.add('scroll--mandatory')
+        e.target.classList.add('scroll--mandatory', 'scroll--smooth')
         setDrag(false)
     }
     const handleDrag = (e) => {
