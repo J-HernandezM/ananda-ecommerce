@@ -19,7 +19,7 @@ dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be pxoved */
 ul[role='list'],
 ol[role='list'] {
   list-style: none;
@@ -48,7 +48,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-size: 16rem;
+  font-size: 16px;
   background-color: var(--bg);
 }
 
@@ -72,7 +72,7 @@ select {
   font: inherit;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+/* pxove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
    scroll-behavior: auto;
@@ -99,13 +99,13 @@ select {
   --white: #ffffff;
   --gray: #f0f2f7;
 
-  --xxs: 11rem;
-  --xs: 13rem;
-  --sm: 16rem;
-  --md: 18rem;
-  --lg: 20rem;
-  --xl: 26rem;
-  font-size: 6.25%;
+  --xxs: 11px;
+  --xs: 13px;
+  --sm: 16px;
+  --md: 18px;
+  --lg: 20px;
+  --xl: 26px;
+  /* font-size: 6.25%; */
 
   --error:#CF6679;
   --bg: #FAF4F4;
@@ -116,7 +116,7 @@ a{
 }
 
 button {
-  border-radius: 4rem;
+  border-radius: 4px;
   border: 1px solid transparent;
   font-family: 'Abnormal6';
   cursor: pointer;

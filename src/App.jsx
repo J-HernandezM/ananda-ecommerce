@@ -9,15 +9,15 @@ import './App.css'
 
 const MainContainer = styled.main`
   transition: .3s all;
-  transform: translateY(${props=>props.mobMenu?'300rem':'108rem'});
+  transform: translateY(${props=>props.mobMenu?'300px':'108px'});
   @media (min-width: 650px) {
-    transform: translateY(172rem);
+    transform: translateY(172px);
   }
 `
 export const Icon = styled(ShoppingCartIcon)`
-  padding: 4rem;
-  border-radius: 20rem;
-  font-size: 34rem;
+  padding: 4px;
+  border-radius: 20px;
+  font-size: 34px;
   color: var(--primary-strong);
   transition: .3s all ease;
 

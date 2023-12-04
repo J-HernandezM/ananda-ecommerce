@@ -22,13 +22,13 @@ export default function Header({mobMenu, setMobMenu}) {
   return(
     <header>
       <UpperHeader>
-        <LogoWhite src={`${logowhite}`} alt={logo} onClick={navHome}/>
+        <LogoWhite src={logowhite.src} alt={logo} onClick={navHome}/>
         <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
       </UpperHeader>
       <MainHeader>
         <>
           <Icon as={MenuSVG} onClick={toggleMobileMenu}/>
-          <Logo src={`${logo}`} alt="logo" onClick={navHome}/>
+          <Logo src={logo.src} alt="logo" onClick={navHome}/>
         </>
         <HeaderRight className="header-right">
           <SearchBar />
@@ -80,8 +80,8 @@ const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20rem;
-  padding: 15rem 20rem;
+  gap: 20px;
+  padding: 15px 20px;
   width: 100%;
   background-color: var(--primary-light);
 `
@@ -89,17 +89,17 @@ const UpperHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  gap: 20rem;
+  gap: 20px;
   color: var(--white);
   background-color: var(--primary-strong);
-  height: 38rem;
-  padding: 8rem 40rem;
+  height: 38px;
+  padding: 8px 40px;
   `
 const Categories = styled.ul`
   display: none;
   margin: 0;
-  padding-left: 0rem;
-  gap: 10rem;
+  padding-left: 0px;
+  gap: 10px;
   background-color: var(--primary-strong);
   color: var(--white);
 
@@ -117,7 +117,7 @@ const HeaderRight = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 1;
-  gap: 20rem;
+  gap: 20px;
   justify-content: space-between;
 
   @media (min-width: 650px) {
@@ -129,8 +129,8 @@ const SearchBarPaper = styled(Paper)`
   align-items: center;
   flex: 1 ;
   padding: 2px 4px; 
-  height: 40rem;
-  min-width: 210rem;
+  height: 40px;
+  min-width: 210px;
 
   @media (min-width: 650px) {
     flex: none;
@@ -139,8 +139,8 @@ const SearchBarPaper = styled(Paper)`
 
 const Logo = styled.img`
   display: none;
-  height: 80rem;
-  min-width: 188.56rem;
+  height: 80px;
+  min-width: 188.56px;
 
   &:hover{
     cursor: pointer;
@@ -151,7 +151,7 @@ const Logo = styled.img`
   }
 `
 const LogoWhite = styled.img`
-  height: 30rem;
+  height: 30px;
   margin-right: auto;
   position: relative;
   z-index: 10;
@@ -172,8 +172,8 @@ const Phrase = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  min-width: 177rem;
-  line-height: 15rem;
+  min-width: 177px;
+  line-height: 15px;
 
   @media (min-width: 700px) {
     position: absolute;

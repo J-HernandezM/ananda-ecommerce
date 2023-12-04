@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function HomeCard({category, drag, distance, type}) {
+export default function HomeCard({category, drag, distance, type, setAutoSlide}) {
   const navigate = useNavigate()
   const [allowClick, setAllowClick] = useState(true)
   const customId = category.slug
@@ -36,6 +36,7 @@ export default function HomeCard({category, drag, distance, type}) {
           category={category} 
           handleMove={handleMove} 
           handleClick={handleClick}
+          setAutoSlide={setAutoSlide}
         />
       )
 
@@ -63,7 +64,11 @@ function CategoryCard ({category, handleMove, handleClick}) {
   )
 }
 
-function ProductCard ({customId, category, handleMove, handleClick}) {
+function ProductCard ({customId, category, handleMove, handleClick, setAutoSlide}) {
+  const disableAutoSlide = () => {
+    setAutoSlide(false)
+  }
+  
   return(
     <>
           <StyledCardF onMouseMove={handleMove}>
@@ -80,21 +85,21 @@ function ProductCard ({customId, category, handleMove, handleClick}) {
               <CardTitleF> {category.title} </CardTitleF>
               <CardPrice>$ 16.000</CardPrice>
               <QuantityBox>
-                <ProductLabel htmlFor={`x1${customId}`}>1 x $ 16.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x1${customId}`}>1 x $ 16.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x1${customId}`} 
                     type='radio' 
                   />
                 </ProductLabel>
-                <ProductLabel htmlFor={`x2${customId}`}>2 x $28.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x2${customId}`}>2 x $28.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x2${customId}`} 
                     type='radio' 
                   />
                 </ProductLabel>
-                <ProductLabel htmlFor={`x12${customId}`}>12 x $ 108.000
+                <ProductLabel onClick={disableAutoSlide} htmlFor={`x12${customId}`}>12 x $ 108.000
                   <ProductInput 
                     name={`quantityOf${customId}`} 
                     id={`x12${customId}`} 
@@ -135,7 +140,7 @@ const CardTitle = styled(CardContent)`
     transition: max-height .3s;
 `
 const StyledCard = styled(Card)`
-  min-width: 172rem;
+  min-width: 172px;
   height: 99%;
   background-color: transparent;
   scroll-snap-align: center;
@@ -144,7 +149,7 @@ const StyledCard = styled(Card)`
   }
   
   @media (min-width: 600px) {
-    min-width: 250rem;
+    min-width: 250px;
   }
 `
 const ActionArea = styled(CardActionArea)`
@@ -159,10 +164,10 @@ const CardImagesF = styled(CardImages)`
   border-radius: 4px;
 `
 const WrapperF = styled.div`
-  padding: 12rem 12rem 0;
+  padding: 12px 12px 0;
   height: fit-content;
   @media (min-width: 600px) {
-    padding: 18rem 18rem 0;
+    padding: 18px 18px 0;
   }
 `
 const CardTitleF = styled.p`
@@ -182,27 +187,27 @@ const CardContentF = styled(CardContent)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8rem;
+  gap: 8px;
   height: 100%;
-  padding: 4rem 12rem 12rem !important;
+  padding: 4px 12px 12px !important;
   font-family: 'Abnormal6';
   color: var(--secondary);
 
   @media (min-width: 600px) {
-    padding: 7rem 18rem 12rem !important;
-    gap: 10rem;
+    padding: 7px 18px 12px !important;
+    gap: 10px;
   }
 `
 const CardPrice = styled.p`
   display: inline-block;
   text-align: center;
-  margin-top: -6rem;
-  padding: 0 10rem;
-  border-radius: 12rem;
+  margin-top: -6px;
+  padding: 0 10px;
+  border-radius: 12px;
   color: var(--white);
   background-color: var(--primary );
   @media (min-width: 600px) {
-    padding: 0 20rem;
+    padding: 0 20px;
   }
 `
 const ActionAreaF = styled(ActionArea)`
@@ -224,8 +229,8 @@ const ProductLabel = styled.label`
   position: relative;
   background-color: var(--gray);
   font-size: var(--xxs);
-  padding: 0 6rem;
-  border-radius: 9rem;
+  padding: 0 6px;
+  border-radius: 9px;
   color: var(--regular-text);
 
   &:has(input:checked){
@@ -238,7 +243,7 @@ const ProductLabel = styled.label`
   }
 
   @media (min-width: 600px) {
-   padding: 0 10rem;
+   padding: 0 10px;
    font-size: var(--xs) 
   }
 `
@@ -248,11 +253,11 @@ const CartButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: auto;
-  padding: 4rem 8rem;
+  padding: 4px 8px;
 `
 const AddToCartIcon = styled(ShoppingCartIcon)`
-  font-size: 22rem;
-  margin-left: 8rem;
+  font-size: 22px;
+  margin-left: 8px;
 ` 
 const QuantityBox = styled.div`
   display: grid;
@@ -260,7 +265,7 @@ const QuantityBox = styled.div`
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 4rem;
+  gap: 4px;
   width: 100%;
 
   & label:last-child {
@@ -271,8 +276,8 @@ const StyledCardF = styled(StyledCard)`
   display: grid;
   grid-template-rows: min-content auto;
   background-color: var(--white);
-  max-width: 172rem;
+  max-width: 172px;
   @media (min-width: 600px) {
-    max-width: 250rem;
+    max-width: 250px;
   }
 `
