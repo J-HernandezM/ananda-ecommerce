@@ -3,16 +3,16 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';import Ca
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function HomeCard({category, drag, distance, type, setAutoSlide}) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [allowClick, setAllowClick] = useState(true)
   const customId = category.slug
   
   const handleClick = () => {
-    allowClick?navigate(`category/${category.slug}`):null
+    allowClick?router.push(`category/${category.slug}`):null
   }
   const handleMove = () => {
     if(drag){

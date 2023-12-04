@@ -1,6 +1,6 @@
-import SliderPanel from "../components/SliderPanel";
-import ImageSlider from "../components/ImageSlider";
-
+'use client'
+import ImageSlider from "../../components/ImageSlider";
+import SliderPanel from "../../components/SliderPanel";
 
 export default function Homepage () {
     return(
@@ -11,4 +11,3 @@ export default function Homepage () {
         </>
     )
 }
-

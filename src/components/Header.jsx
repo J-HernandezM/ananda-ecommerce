@@ -1,6 +1,7 @@
 import { IconButton, InputBase, Paper } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Icon } from "../App";
+import { usePathname, useRouter } from "next/navigation";
+import { Icon } from "../shared/styles/Icon";
+import Link from "next/link";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from "@emotion/styled";
@@ -10,13 +11,13 @@ import MobileMenu from "./MobileMenu";
 import categories from "../data/categories";
 
 export default function Header({mobMenu, setMobMenu}) {
-  const navigate = useNavigate()
+  const router = useRouter()
 
   const toggleMobileMenu = () => {
     setMobMenu(!mobMenu)
   }
   const navHome = () => {
-    navigate('/')
+    router.push('/')
   }
 
   return(
@@ -60,16 +61,13 @@ function SearchBar() {
 }
 
 function CategoryLink({ categorie }) {
+  const pathname = usePathname()
+  
   return(
     <StyledNavLink 
-      style={({isActive})=>({
-        color: isActive?'var(--primary-strong)':'var(--white)', 
-        backgroundColor: isActive?'var(--white)':'inherit', 
-        fontFamily: 'AbnormalN',
-        whiteSpace: 'nowrap'
-      })}
+      className={pathname === `/${categorie.slug}` ? 'link--active' : 'link--unactive'}
       key={categorie.slug} 
-      to={`category/${categorie.slug}`}
+      href={`/category/${categorie.slug}`}
     >
       {categorie.title}
     </StyledNavLink>
@@ -107,7 +105,7 @@ const Categories = styled.ul`
     display: flex;
   }
 `
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled(Link)`
   border-bottom: none;
   border-radius: 10px 10px 0 0;
   padding: 0 10px;

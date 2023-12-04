@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 
 
 export default function MobileMenu({categories, mobMenu ,setMobMenu}) {
@@ -8,7 +8,7 @@ export default function MobileMenu({categories, mobMenu ,setMobMenu}) {
             {categories.map((categorie)=>
                 (<MobCategory 
                     onClick={()=>{setMobMenu(!mobMenu)}} 
-                    to={`category/${categorie.slug}`} 
+                    href={`/category/${categorie.slug}`} 
                     key={categorie.slug}
                 >
                     {categorie.title}
@@ -37,9 +37,6 @@ const MobileWrapper = styled.ul`
         display: none;
     }
 `
-
-
-
 const MobCategory = styled(Link)`
     color: var(--white);
     font-family: 'AbnormalN';

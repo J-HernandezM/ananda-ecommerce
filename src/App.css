@@ -25,6 +25,18 @@ header{
     display: flex;
     gap: 10px;
 }
+.link--active{
+    color: var(--primary-strong); 
+    background-color: var(--white); 
+    font-family: AbnormalN;
+    white-space: nowrap;
+}
+.link--unactive{
+    color: var(--white);
+    background-color: inherit;
+    font-family: AbnormalN;
+    white-space: nowrap;
+}
 
 @media (min-width: 650px) {
     header{
