@@ -8,10 +8,10 @@ import wave from '../assets/wave.png'
 export default function Footer ({mobMenu}) {
     return(
         <StyledFooter mobMenu={mobMenu}>
-            <Wave src={wave} alt="wave footer image" />
+            <Wave src={wave.src} alt="wave footer image" />
             <FooterStart className="arriba">
                 <FooterPanel className="panel">
-                    <FooterLogo src={logo} alt="Ananda Logo" className="logo" />
+                    <FooterLogo src={logo.src} alt="Ananda Logo" className="logo" />
                     <Slogan className="slogan">Somos un taller de cosmética artesanal realizada con ingredientes naturales, de origen vegetal, sin sustancias químicas nocivas para la piel y el medio ambiente.</Slogan>
                     <div className="gap10">
                         <a target="blank" href="https://wa.me/+573053402728"><SocialMediaIcon/></a>

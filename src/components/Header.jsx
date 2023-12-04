@@ -22,13 +22,13 @@ export default function Header({mobMenu, setMobMenu}) {
   return(
     <header>
       <UpperHeader>
-        <LogoWhite src={`${logowhite}`} alt={logo} onClick={navHome}/>
+        <LogoWhite src={logowhite.src} alt={logo} onClick={navHome}/>
         <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
       </UpperHeader>
       <MainHeader>
         <>
           <Icon as={MenuSVG} onClick={toggleMobileMenu}/>
-          <Logo src={`${logo}`} alt="logo" onClick={navHome}/>
+          <Logo src={logo.src} alt="logo" onClick={navHome}/>
         </>
         <HeaderRight className="header-right">
           <SearchBar />

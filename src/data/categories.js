@@ -10,27 +10,27 @@ const categories = [
     {
       title: 'Limpieza facial',
       slug: 'limpieza-facial',
-      image: limpieza
+      image: limpieza.src
     },
     {
       title: 'Tratamientos',
       slug: 'tratamientos',
-      image: tratamientos
+      image: tratamientos.src
     },
     {
       title: 'Cremas y unguentos',
       slug: 'cremas-y-unguentos',
-      image: unguentos
+      image: unguentos.src
     },
     {
       title: 'Mascarillas',
       slug: 'mascarillas',
-      image: mascarillas
+      image: mascarillas.src
     },
     {
       title: 'Tienda',
       slug: 'all',
-      image: tienda
+      image: tienda.src
     }
 ]
 

@@ -13,27 +13,27 @@ import { useEffect, useRef } from "react";
 
 const images = [
     {
-        src: tienda,
+        src: tienda.src,
         slug: 'all'
     },
     {
-        src: limpieza1,
+        src: limpieza1.src,
         slug: 'limpieza-facial'
     },
     {
-        src: tratamientos,
+        src: tratamientos.src,
         slug: 'tratamientos'
     },
     {
-        src: mascarillas,
+        src: mascarillas.src,
         slug: 'mascarillas'
     },
     {
-        src: unguentos,
+        src: unguentos.src,
         slug: 'cremas-y-unguentos'
     },
     {
-        src: limpieza2,
+        src: limpieza2.src,
         slug: 'limpieza-facial'
     },
 
