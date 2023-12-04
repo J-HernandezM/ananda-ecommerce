@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
-import { useNavigate } from "react-router-dom"
-import { Icon } from "../App";
+import { Icon } from "../shared/styles/Icon";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import tienda from '../assets/c-tienda.jpg'
@@ -10,6 +9,7 @@ import mascarillas from '../assets/c-mascarillas.jpg'
 import unguentos from '../assets/c-unguentos.jpg'
 import limpieza2 from '../assets/c-limpieza2.jpg'
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const images = [
     {
@@ -39,7 +39,7 @@ const images = [
 
 ]
 export default function ImageSlider() {
-    const navigate = useNavigate()
+    const router = useRouter()
     const imageBox = useRef()
     let index = 1
     let sliderId
@@ -101,7 +101,7 @@ export default function ImageSlider() {
     return(
         <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
             <ImageBox className="scroll--smooth" ref={imageBox}>
-                {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{navigate(`category/${image.slug}`)}}/>)}
+                {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{router.push(`category/${image.slug}`)}}/>)}
             </ImageBox>
             <div id='nav-controls'>
                 <BlackIcon as={LeftIcon} onClick={slideBackwards} />                

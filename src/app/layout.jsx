@@ -11,9 +11,7 @@ export default function RootLayout({ children }) {
           </head>
           <body>
             <div id="root">{children}</div>
-            <script type="module" src="/src/main.jsx"></script>
           </body>
         </html>
-        
       )
 }
