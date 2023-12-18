@@ -156,7 +156,7 @@ const ActionArea = styled(CardActionArea)`
     height: 100%;
 
     &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight{
-      opacity: 0.08;
+      opacity: 0.13;
     }
 `
 
@@ -211,11 +211,10 @@ const CardPrice = styled.p`
   }
 `
 const ActionAreaF = styled(ActionArea)`
-  height: none;
   aspect-ratio: 1;
     
     &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight{
-      opacity: 0.08;
+      opacity: 0.13;
     }
 `
 const ProductInput = styled.input`

@@ -2,17 +2,35 @@
 
 import { useContext } from "react"
 import { ProductsContext } from "../../../../context/products"
+import ReusableCard from '../../../../components/ReusableCard'
 
-function CategoryPage ({ params }) {
+export default function CategoryPage ({ params }) {
     const { data, loading } = useContext(ProductsContext)
     console.log(params)
+    console.log(data)
     // const filterBy = params.categoryType use this to filter using the route
     return(
-        <div>
+        <>
             {loading && <p>Cargando...</p>}
-            {(!loading && data) && <p>Ya cargo! {data[0].title} </p>}
-        </div>
+            {(!loading && data) && <ProductGrid data={data}/>}
+        </>
     )
 }
 
-export default CategoryPage
+function ProductGrid({ data }) {
+    const handleClick = () => {
+        console.log('click')
+    }
+
+    return(
+        <div style={{display: "grid"}}>
+            {data.map((product) => 
+                <ReusableCard 
+                    key={product.id} 
+                    product={product} 
+                    handleClick={handleClick}
+                />
+            )}
+        </div>
+    )
+}
