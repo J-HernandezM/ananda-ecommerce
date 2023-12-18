@@ -87,10 +87,9 @@ select {
     scroll-behavior: auto !important;
   }
 }
-/* my shit */
-:root {
-  font-family: 'Abnormal';
 
+/* my preset */
+:root {
   --primary-light: #dbcbe1;
   --primary-strong: #84719c;
   --secondary: #18535b;
@@ -118,7 +117,7 @@ a{
 button {
   border-radius: 4px;
   border: 1px solid transparent;
-  font-family: 'Abnormal6';
+  font-family: var(--font-abnormal-6);
   cursor: pointer;
   transition: filter 0.3s ease;
   background-color: var(--secondary);

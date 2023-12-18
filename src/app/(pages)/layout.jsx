@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import '../../index.css'
 import '../../App.css'
-import '../../fonts.css'
 import { createTheme, ThemeProvider } from '@mui/material'
 
 const customTheme = createTheme({

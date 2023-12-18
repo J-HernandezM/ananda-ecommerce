@@ -4,14 +4,15 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import logo from '../assets/logo-circulo.png'
 import ListIcon from '@mui/icons-material/NavigateNext';
 import wave from '../assets/wave.png'
+import Image from "next/image";
 
 export default function Footer ({mobMenu}) {
     return(
         <StyledFooter mobMenu={mobMenu}>
-            <Wave src={wave.src} alt="wave footer image" />
+            <Wave src={wave} alt="wave footer image" />
             <FooterStart className="arriba">
                 <FooterPanel className="panel">
-                    <FooterLogo src={logo.src} alt="Ananda Logo" className="logo" />
+                    <FooterLogo src={logo} alt="Ananda Logo" className="logo" />
                     <Slogan className="slogan">Somos un taller de cosmética artesanal realizada con ingredientes naturales, de origen vegetal, sin sustancias químicas nocivas para la piel y el medio ambiente.</Slogan>
                     <div className="gap10">
                         <a target="blank" href="https://wa.me/+573053402728"><SocialMediaIcon/></a>
@@ -55,7 +56,7 @@ const FooterStart = styled.div`
     flex-direction: column;
     gap: 20px;
     padding: 0 20px;
-    font-family: 'AbnormalN';
+    font-family: var(--font-abnormal-n);
     color: var(--regular-text);
     background-color: var(--primary-light);
 
@@ -89,7 +90,7 @@ const FooterEnd = styled.div`
 
     & a {
         color: var(--white);
-        font-family: 'Abnormal6'
+        font-family: var(--font-abnormal-6)
     }
 `
 const FooterPanel = styled.div`
@@ -105,10 +106,11 @@ const FooterPanel = styled.div`
         flex-grow: 1;
     }
 `
-const FooterLogo = styled.img`
+const FooterLogo = styled(Image)`
     position: relative;
     z-index: 2;
     width: 50%;
+    height: auto;
     max-width: 310px;
     min-width: 250px;
     @media (min-width: 650px) {
@@ -128,21 +130,22 @@ const SocialMediaIcon = styled(WhatsAppIcon)`
     }
 `
 const Contact = styled.p`
-    font-family: 'Abnormal6';
+    font-family: var(--font-abnormal-6);
     font-size: var(--lg);
 `
 const FooterAction = styled.p`
     display: flex;
-    font-family: 'Abnormal6';
+    font-family: var(--font-abnormal-6);
     align-items: center;
     &:hover{
         cursor: pointer;
         color: var(--secondary);
     }
 `
-const Wave = styled.img`
+const Wave = styled(Image)`
     position: relative;
     top: 2px;
+    height: auto;
     max-height: 250px;
 `
 const Slogan = styled.p`

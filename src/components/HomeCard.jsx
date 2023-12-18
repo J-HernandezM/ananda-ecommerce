@@ -134,7 +134,7 @@ const CardTitle = styled(CardContent)`
     background-color: rgb(255 255 255 / 0.3) ;
     backdrop-filter: blur(2px);
     
-    font-family: 'Abnormal6';
+    font-family: var(--font-abnormal-6);
     color: var(--secondary);
     
     transition: max-height .3s;
@@ -190,7 +190,7 @@ const CardContentF = styled(CardContent)`
   gap: 8px;
   height: 100%;
   padding: 4px 12px 12px !important;
-  font-family: 'Abnormal6';
+  font-family: var(--font-abnormal-6);
   color: var(--secondary);
 
   @media (min-width: 600px) {
