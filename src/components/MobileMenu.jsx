@@ -39,7 +39,7 @@ const MobileWrapper = styled.ul`
 `
 const MobCategory = styled(Link)`
     color: var(--white);
-    font-family: 'AbnormalN';
+    font-family: var(--font-abnormal-n);
     transition: transform .3s;
 
     &:hover{
