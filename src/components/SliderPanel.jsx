@@ -125,7 +125,7 @@ const Wrapper = styled.div`
 `
 
 const Title = styled.h2`
-    font-family: 'AbnormalN';
+    font-family: var(--font-abnormal-n);
     font-size: var(--xl);
     text-align: center;
     padding: 0;

@@ -55,7 +55,7 @@ const FooterStart = styled.div`
     flex-direction: column;
     gap: 20px;
     padding: 0 20px;
-    font-family: 'AbnormalN';
+    font-family: var(--font-abnormal-n);
     color: var(--regular-text);
     background-color: var(--primary-light);
 
@@ -89,7 +89,7 @@ const FooterEnd = styled.div`
 
     & a {
         color: var(--white);
-        font-family: 'Abnormal6'
+        font-family: var(--font-abnormal-6)
     }
 `
 const FooterPanel = styled.div`
@@ -128,12 +128,12 @@ const SocialMediaIcon = styled(WhatsAppIcon)`
     }
 `
 const Contact = styled.p`
-    font-family: 'Abnormal6';
+    font-family: var(--font-abnormal-6);
     font-size: var(--lg);
 `
 const FooterAction = styled.p`
     display: flex;
-    font-family: 'Abnormal6';
+    font-family: var(--font-abnormal-6);
     align-items: center;
     &:hover{
         cursor: pointer;

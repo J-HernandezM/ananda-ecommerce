@@ -1,4 +1,5 @@
 #root{
+    font-family: var(--font-abnormal);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -28,13 +29,13 @@ header{
 .link--active{
     color: var(--primary-strong); 
     background-color: var(--white); 
-    font-family: AbnormalN;
+    font-family: var(--font-abnormal-n);
     white-space: nowrap;
 }
 .link--unactive{
     color: var(--white);
     background-color: inherit;
-    font-family: AbnormalN;
+    font-family: var(--font-abnormal-n);
     white-space: nowrap;
 }
 
