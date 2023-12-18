@@ -10,6 +10,7 @@ import unguentos from '../assets/c-unguentos.jpg'
 import limpieza2 from '../assets/c-limpieza2.jpg'
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const images = [
     {
@@ -101,7 +102,14 @@ export default function ImageSlider() {
     return(
         <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
             <ImageBox className="scroll--smooth" ref={imageBox}>
-                {images.map((image)=> <SliderImg key={image.src} src={image.src} onClick={()=>{router.push(`category/${image.slug}`)}}/>)}
+                {images.map((image)=> 
+                    <SliderImg 
+                        key={image.src} 
+                        src={image.src} 
+                        onClick={()=>{router.push(`category/${image.slug}`)}}
+                        fill
+                    />
+                )}
             </ImageBox>
             <div id='nav-controls'>
                 <BlackIcon as={LeftIcon} onClick={slideBackwards} />                
@@ -132,8 +140,9 @@ const ImageBox = styled.div`
         height: 500px
     }
 `
-const SliderImg = styled.img`
+const SliderImg = styled(Image)`
     min-width: 100%;
+    height: auto;
     object-fit: cover;
     scroll-snap-align: center;
 

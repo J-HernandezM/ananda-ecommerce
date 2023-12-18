@@ -9,6 +9,7 @@ import logo from "../assets/logo-sin-fondo.png"
 import logowhite from "../assets/logo-white.png"
 import MobileMenu from "./MobileMenu";
 import categories from "../data/categories";
+import Image from "next/image";
 
 export default function Header({mobMenu, setMobMenu}) {
   const router = useRouter()
@@ -23,13 +24,13 @@ export default function Header({mobMenu, setMobMenu}) {
   return(
     <header>
       <UpperHeader>
-        <LogoWhite src={logowhite.src} alt={logo} onClick={navHome}/>
+        <LogoWhite src={logowhite} alt={logo} onClick={navHome}/>
         <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
       </UpperHeader>
       <MainHeader>
         <>
           <Icon as={MenuSVG} onClick={toggleMobileMenu}/>
-          <Logo src={logo.src} alt="logo" onClick={navHome}/>
+          <Logo src={logo} alt="logo" onClick={navHome}/>
         </>
         <HeaderRight className="header-right">
           <SearchBar />
@@ -135,9 +136,10 @@ const SearchBarPaper = styled(Paper)`
   }
 `
 
-const Logo = styled.img`
+const Logo = styled(Image)`
   display: none;
   height: 80px;
+  width: auto;
   min-width: 188.56px;
 
   &:hover{
@@ -148,7 +150,8 @@ const Logo = styled.img`
     display: block;
   }
 `
-const LogoWhite = styled.img`
+const LogoWhite = styled(Image)`
+  width: auto;
   height: 30px;
   margin-right: auto;
   position: relative;
