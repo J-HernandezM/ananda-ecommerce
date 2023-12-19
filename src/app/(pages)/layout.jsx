@@ -1,4 +1,5 @@
 'use client'
+
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import styled from "@emotion/styled";
@@ -6,6 +7,7 @@ import { useState } from "react";
 import '../../index.css'
 import '../../App.css'
 import { createTheme, ThemeProvider } from '@mui/material'
+import ProductsProvider from '../../context/products'
 
 const customTheme = createTheme({
     typography: {
@@ -26,9 +28,11 @@ export default function AppLayout({ children }) {
     return (
         <ThemeProvider theme={customTheme}>
             <Header mobMenu={mobMenu} setMobMenu={setMobMenu}/>
-            <MainContainer mobMenu={mobMenu}>
-                {children}
-            </MainContainer>
+            <ProductsProvider>
+              <MainContainer mobMenu={mobMenu}>
+                  {children}
+              </MainContainer>
+            </ProductsProvider>
             <Footer mobMenu={mobMenu}/>
         </ThemeProvider>
       )
