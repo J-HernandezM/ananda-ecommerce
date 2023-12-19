@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { ProductsContext } from "../../../../context/products"
 import ReusableCard from '../../../../components/ReusableCard'
 import styled from "@emotion/styled"
@@ -35,6 +35,8 @@ export default function CategoryPage ({ params }) {
                 return a.price - b.price
         }
     } ):mock
+
+    console.log(sortedData)
 
     const setFilters = (event) => {
         const current = new URLSearchParams(Array.from(searchParams.entries()))
