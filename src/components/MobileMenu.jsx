@@ -5,13 +5,13 @@ import Link from "next/link"
 export default function MobileMenu({categories, mobMenu ,setMobMenu}) {
     return(
         <MobileWrapper mobMenu={mobMenu}>
-            {categories.map((categorie)=>
+            {categories.map((category)=>
                 (<MobCategory 
                     onClick={()=>{setMobMenu(!mobMenu)}} 
-                    href={`/category/${categorie.slug}`} 
-                    key={categorie.slug}
+                    href={`/category/${category.slug}`} 
+                    key={category.slug}
                 >
-                    {categorie.title}
+                    {category.title}
                 </MobCategory>)    
             )}
         </MobileWrapper>

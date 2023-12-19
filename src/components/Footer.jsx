@@ -145,7 +145,7 @@ const FooterAction = styled.p`
 const Wave = styled(Image)`
     position: relative;
     top: 2px;
-    height: auto;
+    width: auto;
     max-height: 250px;
 `
 const Slogan = styled.p`

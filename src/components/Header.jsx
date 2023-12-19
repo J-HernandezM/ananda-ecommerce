@@ -38,7 +38,7 @@ export default function Header({mobMenu, setMobMenu}) {
         </HeaderRight>
       </MainHeader>
       <Categories>
-            {categories.map((categorie)=>(<CategoryLink categorie={categorie} key={categorie.slug}/>))}
+            {categories.map((category)=>(<CategoryLink category={category} key={category.slug}/>))}
       </Categories>
 
       <MobileMenu categories={categories} mobMenu={mobMenu} setMobMenu={setMobMenu}/>
@@ -61,16 +61,16 @@ function SearchBar() {
     );
 }
 
-function CategoryLink({ categorie }) {
+function CategoryLink({ category }) {
   const pathname = usePathname()
   
   return(
     <StyledNavLink 
-      className={pathname === `/${categorie.slug}` ? 'link--active' : 'link--unactive'}
-      key={categorie.slug} 
-      href={`/category/${categorie.slug}`}
+      className={pathname === `/${category.slug}` ? 'link--active' : 'link--unactive'}
+      key={category.slug} 
+      href={`/category/${category.slug}`}
     >
-      {categorie.title}
+      {category.title}
     </StyledNavLink>
   )
 }
