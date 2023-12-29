@@ -105,9 +105,11 @@ export default function ImageSlider() {
                 {images.map((image)=> 
                     <SliderImg 
                         key={image.src} 
-                        src={image.src} 
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        src={image.src}
                         onClick={()=>{router.push(`category/${image.slug}`)}}
-                        fill
                     />
                 )}
             </ImageBox>
@@ -142,7 +144,8 @@ const ImageBox = styled.div`
 `
 const SliderImg = styled(Image)`
     min-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 100%; 
     object-fit: cover;
     scroll-snap-align: center;
 
