@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export function useFetch(url) {
+export function useFetch(url, options) {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
@@ -11,7 +11,7 @@ export function useFetch(url) {
     useEffect( () => {
         const abortController = new AbortController()
         setController(abortController)
-        fetch(url, {signal: abortController.signal})
+        fetch(url, {...options, signal: abortController.signal})
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => setError(err))
