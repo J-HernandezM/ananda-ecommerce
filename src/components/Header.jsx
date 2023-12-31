@@ -1,36 +1,36 @@
-import { IconButton, InputBase, Paper } from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
-import { Icon } from "../shared/styles/Icon";
-import Link from "next/link";
+import { IconButton, InputBase, Paper } from '@mui/material';
+import { usePathname, useRouter } from 'next/navigation';
+import { Icon } from '../shared/styles/Icon';
+import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import styled from "@emotion/styled";
-import logo from "../assets/logo-sin-fondo.png"
-import logowhite from "../assets/logo-white.png"
-import MobileMenu from "./MobileMenu";
-import categories from "../data/categories";
-import Image from "next/image";
+import styled from '@emotion/styled';
+import logo from '../assets/logo-sin-fondo.png';
+import logowhite from '../assets/logo-white.png';
+import MobileMenu from './MobileMenu';
+import categories from '../data/categories';
+import Image from 'next/image';
 
-export default function Header({mobMenu, setMobMenu}) {
-  const router = useRouter()
+export default function Header({ mobMenu, setMobMenu }) {
+  const router = useRouter();
 
   const toggleMobileMenu = () => {
-    setMobMenu(!mobMenu)
-  }
+    setMobMenu(!mobMenu);
+  };
   const navHome = () => {
-    router.push('/')
-  }
+    router.push('/');
+  };
 
-  return(
+  return (
     <header>
       <UpperHeader>
-        <LogoWhite src={logowhite} alt={logo} onClick={navHome}/>
+        <LogoWhite src={logowhite} alt={logo} onClick={navHome} />
         <Phrase>Hecho en casa, hecho a mano, hecho con amor.</Phrase>
       </UpperHeader>
       <MainHeader>
         <>
-          <Icon as={MenuSVG} onClick={toggleMobileMenu}/>
-          <Logo src={logo} alt="logo" onClick={navHome}/>
+          <Icon as={MenuSVG} onClick={toggleMobileMenu} />
+          <Logo src={logo} alt="logo" onClick={navHome} />
         </>
         <HeaderRight className="header-right">
           <SearchBar />
@@ -38,41 +38,49 @@ export default function Header({mobMenu, setMobMenu}) {
         </HeaderRight>
       </MainHeader>
       <Categories>
-            {categories.map((category)=>(<CategoryLink category={category} key={category.slug}/>))}
+        {categories.map((category) => (
+          <CategoryLink category={category} key={category.slug} />
+        ))}
       </Categories>
 
-      <MobileMenu categories={categories} mobMenu={mobMenu} setMobMenu={setMobMenu}/>
+      <MobileMenu
+        categories={categories}
+        mobMenu={mobMenu}
+        setMobMenu={setMobMenu}
+      />
     </header>
-  )
+  );
 }
 
 function SearchBar() {
-    return (
-      <SearchBarPaper component="form" >
-        <InputBase
-          sx={{ ml: 1, flex: 1}}
-          placeholder="Buscar"
-          inputProps={{ 'aria-label': 'Buscar' }}
-        />
-        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </SearchBarPaper>
-    );
+  return (
+    <SearchBarPaper component="form">
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Buscar"
+        inputProps={{ 'aria-label': 'Buscar' }}
+      />
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+    </SearchBarPaper>
+  );
 }
 
 function CategoryLink({ category }) {
-  const pathname = usePathname()
-  
-  return(
-    <StyledNavLink 
-      className={pathname === `/${category.slug}` ? 'link--active' : 'link--unactive'}
-      key={category.slug} 
+  const pathname = usePathname();
+
+  return (
+    <StyledNavLink
+      className={
+        pathname === `/${category.slug}` ? 'link--active' : 'link--unactive'
+      }
+      key={category.slug}
       href={`/category/${category.slug}`}
     >
       {category.title}
     </StyledNavLink>
-  )
+  );
 }
 
 const MainHeader = styled.div`
@@ -83,7 +91,7 @@ const MainHeader = styled.div`
   padding: 15px 20px;
   width: 100%;
   background-color: var(--primary-light);
-`
+`;
 const UpperHeader = styled.div`
   display: flex;
   align-items: center;
@@ -93,7 +101,7 @@ const UpperHeader = styled.div`
   background-color: var(--primary-strong);
   height: 38px;
   padding: 8px 40px;
-  `
+`;
 const Categories = styled.ul`
   display: none;
   margin: 0;
@@ -105,12 +113,12 @@ const Categories = styled.ul`
   @media (min-width: 650px) {
     display: flex;
   }
-`
+`;
 const StyledNavLink = styled(Link)`
   border-bottom: none;
   border-radius: 10px 10px 0 0;
   padding: 0 10px;
-`
+`;
 
 const HeaderRight = styled.div`
   display: flex;
@@ -122,19 +130,19 @@ const HeaderRight = styled.div`
   @media (min-width: 650px) {
     flex-grow: 0;
   }
-`
+`;
 const SearchBarPaper = styled(Paper)`
   display: flex;
   align-items: center;
-  flex: 1 ;
-  padding: 2px 4px; 
+  flex: 1;
+  padding: 2px 4px;
   height: 40px;
   min-width: 210px;
 
   @media (min-width: 650px) {
     flex: none;
   }
-`
+`;
 
 const Logo = styled(Image)`
   display: none;
@@ -142,14 +150,14 @@ const Logo = styled(Image)`
   width: auto;
   min-width: 188.56px;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
-  @media (min-width: 650px){
+  @media (min-width: 650px) {
     display: block;
   }
-`
+`;
 const LogoWhite = styled(Image)`
   width: auto;
   height: 30px;
@@ -157,16 +165,16 @@ const LogoWhite = styled(Image)`
   position: relative;
   z-index: 10;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const MenuSVG = styled(MenuIcon)`
   @media (min-width: 650px) {
     display: none;
   }
-`
+`;
 
 const Phrase = styled.div`
   display: flex;
@@ -184,4 +192,4 @@ const Phrase = styled.div`
     height: 100%;
     z-index: 0;
   }
-`
+`;

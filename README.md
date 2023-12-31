@@ -1,6 +1,6 @@
 # Ananda Jaboneria Artesanal - Tienda Virtual
 
-Tienda virtual para empresa Ananda Jaboneria Artesanal, construida con React, NextJS, MaterialUI y Styled Components. 
+Tienda virtual para empresa Ananda Jaboneria Artesanal, construida con React, NextJS, MaterialUI y Styled Components.
 
 Puedes visitar la pagina web [aquí](https://ananda-ecommerce.vercel.app)
 
