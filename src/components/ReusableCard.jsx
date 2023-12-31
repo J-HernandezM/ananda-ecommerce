@@ -15,7 +15,7 @@ export default function ReusableCard({product, handleClick}) {
                 <ActionArea onClick={handleClick}>
                     <CardImages
                         component='img'
-                        image={product.featuredImage.url}
+                        image={process.env.NEXT_PUBLIC_TEST + product.featuredImage.url}
                         alt={product.featuredImage.alternativeText}
                     />
                 </ActionArea>
