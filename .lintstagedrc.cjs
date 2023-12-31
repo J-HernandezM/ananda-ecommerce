@@ -1,3 +1,3 @@
 module.exports = {
-  "app/**/*.jsx": ["npm run lint"],
+  "src/**/*.jsx": ["npm run lint"],
 };
