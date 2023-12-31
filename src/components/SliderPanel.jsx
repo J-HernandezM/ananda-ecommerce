@@ -8,7 +8,7 @@ export default function SliderPanel({ type }) {
   const [autoSlide, setAutoSlide] = useState(true);
   const [startX, setStartX] = useState();
   const [scrollLeft, setScrollLeft] = useState();
-  const [distance, setDistance] = useState();
+  const [distance, setDistance] = useState()
   const panelRef = useRef(null)
 
   let index = 1;
