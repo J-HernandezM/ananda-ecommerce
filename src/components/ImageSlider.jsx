@@ -52,7 +52,7 @@ export default function ImageSlider() {
                 let firstClone = imageBox.current.firstChild.cloneNode()
                 imageBox.current.append(firstClone)
             }
-        }    
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     , [])
 
@@ -102,9 +102,9 @@ export default function ImageSlider() {
     return(
         <Carrousel onMouseLeave={startSlider} onMouseEnter={stopSlider}>
             <ImageBox className="scroll--smooth" ref={imageBox}>
-                {images.map((image)=> 
-                    <SliderImg 
-                        key={image.src} 
+                {images.map((image)=>
+                    <SliderImg
+                        key={image.src}
                         width={0}
                         height={0}
                         sizes="100vw"
@@ -114,8 +114,8 @@ export default function ImageSlider() {
                 )}
             </ImageBox>
             <div id='nav-controls'>
-                <BlackIcon as={LeftIcon} onClick={slideBackwards} />                
-                <BlackIcon as={NavigateNextIcon} onClick={slideForward}/>                
+                <BlackIcon as={LeftIcon} onClick={slideBackwards} />
+                <BlackIcon as={NavigateNextIcon} onClick={slideForward}/>
             </div>
         </Carrousel>
     )
@@ -145,7 +145,7 @@ const ImageBox = styled.div`
 const SliderImg = styled(Image)`
     min-width: 100%;
     width: 100%;
-    height: 100%; 
+    height: 100%;
     object-fit: cover;
     scroll-snap-align: center;
 

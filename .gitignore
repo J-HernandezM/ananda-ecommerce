@@ -26,3 +26,6 @@ dist-ssr
 # Next
 .next
 next-env.d.ts
+
+# Tests coverage directory
+coverage

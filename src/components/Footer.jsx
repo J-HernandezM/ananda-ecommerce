@@ -1,45 +1,46 @@
+// @packages
+import Image from "next/image";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import ListIcon from '@mui/icons-material/NavigateNext';
 import styled from "@emotion/styled"
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import logo from '../assets/logo-circulo.png'
-import ListIcon from '@mui/icons-material/NavigateNext';
-import wave from '../assets/wave.png'
-import Image from "next/image";
 
-export default function Footer ({mobMenu}) {
-    return(
-        <StyledFooter mobMenu={mobMenu}>
-            <Wave src={wave} alt="wave footer image" />
-            <FooterStart className="arriba">
-                <FooterPanel className="panel">
-                    <FooterLogo src={logo} alt="Ananda Logo" className="logo" />
-                    <Slogan className="slogan">Somos un taller de cosmética artesanal realizada con ingredientes naturales, de origen vegetal, sin sustancias químicas nocivas para la piel y el medio ambiente.</Slogan>
-                    <div className="gap10">
-                        <a target="blank" href="https://wa.me/+573053402728"><SocialMediaIcon/></a>
-                        <a target="blank" href="https://www.instagram.com/anandajaboneriartesanal/"><SocialMediaIcon as={InstagramIcon} /></a>
-                    </div>
-                </FooterPanel>
-                <FooterPanel className="panel">
-                    <div>
-                        <FooterAction> <ListIcon/> Quienes somos</FooterAction>
-                        <FooterAction> <ListIcon/> Quiero ser distribuidor</FooterAction>
-                    </div>
-                        <Contact>Contactanos</Contact>
-                        <p>juansw03@gmail.com</p>
-                        <p>+57 305 340 2728</p>
-                </FooterPanel>
-                <FooterPanel className="panel">
-                    <div>
-                        <FooterAction> <ListIcon/> Politica de cambios y devoluciones</FooterAction>
-                        <FooterAction> <ListIcon/> Preguntas frecuentes</FooterAction>
-                        <FooterAction> <ListIcon/> Politica de envios</FooterAction>
-                    </div>
-                </FooterPanel>
-            </FooterStart>
-            <FooterEnd className="abajo">Desarrollado por:&nbsp;<a href="https://github.com/J-HernandezM">Juan Jose Hernandez</a></FooterEnd>
-        </StyledFooter>
-    )
-}
+// @assets
+import logo from '../assets/logo-circulo.png'
+import wave from '../assets/wave.png'
+
+const Footer = ({ mobMenu }) => (
+    <StyledFooter mobMenu={mobMenu}>
+        <Wave src={wave} alt="wave footer image" />
+        <FooterStart className="arriba">
+            <FooterPanel className="panel">
+                <FooterLogo src={logo} alt="Ananda Logo" className="logo" />
+                <Slogan className="slogan">Somos un taller de cosmética artesanal realizada con ingredientes naturales, de origen vegetal, sin sustancias químicas nocivas para la piel y el medio ambiente.</Slogan>
+                <div className="gap10">
+                    <a target="blank" href="https://wa.me/+573053402728"><SocialMediaIcon/></a>
+                    <a target="blank" href="https://www.instagram.com/anandajaboneriartesanal/"><SocialMediaIcon as={InstagramIcon} /></a>
+                </div>
+            </FooterPanel>
+            <FooterPanel className="panel">
+                <div>
+                    <FooterAction> <ListIcon/> Quienes somos</FooterAction>
+                    <FooterAction> <ListIcon/> Quiero ser distribuidor</FooterAction>
+                </div>
+                    <Contact>Contactanos</Contact>
+                    <p>juansw03@gmail.com</p>
+                    <p>+57 305 340 2728</p>
+            </FooterPanel>
+            <FooterPanel className="panel">
+                <div>
+                    <FooterAction> <ListIcon/> Politica de cambios y devoluciones</FooterAction>
+                    <FooterAction> <ListIcon/> Preguntas frecuentes</FooterAction>
+                    <FooterAction> <ListIcon/> Politica de envios</FooterAction>
+                </div>
+            </FooterPanel>
+        </FooterStart>
+        <FooterEnd className="abajo">Desarrollado por:&nbsp;<a href="https://github.com/J-HernandezM">Juan Jose Hernandez</a></FooterEnd>
+    </StyledFooter>
+)
 
 const StyledFooter = styled.footer`
     position: relative;
@@ -153,3 +154,5 @@ const Slogan = styled.p`
     min-width: 310px;
     margin-top: -20px;
 `
+
+export default Footer;
