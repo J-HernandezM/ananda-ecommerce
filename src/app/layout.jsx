@@ -9,6 +9,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
           <head>
+          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             {/* <link rel="icon" type="image/svg+xml" href="/vite.svg" /> */}
           </head>
           {/* TODO: merge abnormal into one archive with differents weights, define wich other fonts use */}
