@@ -17,13 +17,12 @@ const mock = [
 ]
 
 export default function CategoryPage ({ params }) {
-    const { data, loading, products } = useContext(ProductsContext)
+    const { loading, products } = useContext(ProductsContext)
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
     //TODO: change data for products at GRID and organize the attributes at ReusableCard
-    console.log(products)
 
     const sortBy = searchParams.get('sortBy')
     const categoryTitle = categories.find( category => category.slug === params.categoryType).title 
