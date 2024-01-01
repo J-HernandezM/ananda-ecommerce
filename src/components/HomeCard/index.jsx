@@ -1,27 +1,33 @@
-// @packages
+import Card from '@mui/material/Card';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
 import styled from '@emotion/styled';
 
-const HomeCard = ({ category, drag, distance, type, setAutoSlide }) => {
-  const router = useRouter()
-  const [allowClick, setAllowClick] = useState(true)
-  const customId = category.slug
+export default function HomeCard({
+  category,
+  drag,
+  distance,
+  type,
+  setAutoSlide,
+}) {
+  const router = useRouter();
+  const [allowClick, setAllowClick] = useState(true);
+  const customId = category.slug;
 
   const handleClick = () => {
-    allowClick ? router.push(`category/${category.slug}`) : null
-  }
-
+    allowClick ? router.push(`category/${category.slug}`) : null;
+  };
   const handleMove = () => {
     if (drag) {
-      distance > 100 ? setAllowClick(false) : setAllowClick(true)
-    } else { setAllowClick(true) }
-  }
+      distance > 100 ? setAllowClick(false) : setAllowClick(true);
+    } else {
+      setAllowClick(true);
+    }
+  };
 
   switch (type) {
     case 'Categorias':
@@ -31,7 +37,7 @@ const HomeCard = ({ category, drag, distance, type, setAutoSlide }) => {
           handleMove={handleMove}
           handleClick={handleClick}
         />
-      )
+      );
     case 'Destacados':
       return (
         <ProductCard
@@ -41,29 +47,39 @@ const HomeCard = ({ category, drag, distance, type, setAutoSlide }) => {
           handleClick={handleClick}
           setAutoSlide={setAutoSlide}
         />
-      )
+      );
   }
 }
 
-const CategoryCard = ({ category, handleMove, handleClick }) => (
-  <StyledCard onClick={handleClick} onMouseMove={handleMove}>
-    <ActionArea>
-      <CardImages
-        component='img'
-        image={category.image}
-        alt={category.slug}
-      />
-      <CardTitle className='Category--card-title'>
-        <p data-testid="category-title">{category.title}</p>
-      </CardTitle>
-    </ActionArea>
-  </StyledCard>
-)
+function CategoryCard({ category, handleMove, handleClick }) {
+  return (
+    <>
+      <StyledCard onClick={handleClick} onMouseMove={handleMove}>
+        <ActionArea>
+          <CardImages
+            component="img"
+            image={category.image}
+            alt={category.slug}
+          />
+          <CardTitle className="Category--card-title">
+            <p> {category.title} </p>
+          </CardTitle>
+        </ActionArea>
+      </StyledCard>
+    </>
+  );
+}
 
-function ProductCard({ customId, category, handleMove, handleClick, setAutoSlide }) {
+function ProductCard({
+  customId,
+  category,
+  handleMove,
+  handleClick,
+  setAutoSlide,
+}) {
   const disableAutoSlide = () => {
-    setAutoSlide(false)
-  }
+    setAutoSlide(false);
+  };
 
   return (
     <>
@@ -71,7 +87,7 @@ function ProductCard({ customId, category, handleMove, handleClick, setAutoSlide
         <WrapperF>
           <ActionAreaF onClick={handleClick}>
             <CardImagesF
-              component='img'
+              component="img"
               image={category.image}
               alt={category.slug}
             />
@@ -81,33 +97,38 @@ function ProductCard({ customId, category, handleMove, handleClick, setAutoSlide
           <CardTitleF> {category.title} </CardTitleF>
           <CardPrice>$ 16.000</CardPrice>
           <QuantityBox>
-            <ProductLabel onClick={disableAutoSlide} htmlFor={`x1${customId}`}>1 x $ 16.000
+            <ProductLabel onClick={disableAutoSlide} htmlFor={`x1${customId}`}>
+              1 x $ 16.000
               <ProductInput
                 name={`quantityOf${customId}`}
                 id={`x1${customId}`}
-                type='radio'
+                type="radio"
               />
             </ProductLabel>
-            <ProductLabel onClick={disableAutoSlide} htmlFor={`x2${customId}`}>2 x $28.000
+            <ProductLabel onClick={disableAutoSlide} htmlFor={`x2${customId}`}>
+              2 x $28.000
               <ProductInput
                 name={`quantityOf${customId}`}
                 id={`x2${customId}`}
-                type='radio'
+                type="radio"
               />
             </ProductLabel>
-            <ProductLabel onClick={disableAutoSlide} htmlFor={`x12${customId}`}>12 x $ 108.000
+            <ProductLabel onClick={disableAutoSlide} htmlFor={`x12${customId}`}>
+              12 x $ 108.000
               <ProductInput
                 name={`quantityOf${customId}`}
                 id={`x12${customId}`}
-                type='radio'
+                type="radio"
               />
             </ProductLabel>
           </QuantityBox>
-          <CartButton>AGREGAR <AddToCartIcon /></CartButton>
+          <CartButton>
+            AGREGAR <AddToCartIcon />
+          </CartButton>
         </CardContentF>
       </StyledCardF>
     </>
-  )
+  );
 }
 
 const CardImages = styled(CardMedia)`
@@ -115,8 +136,7 @@ const CardImages = styled(CardMedia)`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`
-
+`;
 const CardTitle = styled(CardContent)`
   display: grid;
   place-items: center;
@@ -128,14 +148,14 @@ const CardTitle = styled(CardContent)`
   max-height: 15%;
   padding: 0;
 
-  background-color: rgb(255 255 255 / 0.3) ;
+  background-color: rgb(255 255 255 / 0.3);
   backdrop-filter: blur(2px);
 
   font-family: var(--font-abnormal-6);
   color: var(--secondary);
 
-  transition: max-height .3s;
-`
+  transition: max-height 0.3s;
+`;
 const StyledCard = styled(Card)`
   min-width: 172px;
   height: 99%;
@@ -148,25 +168,25 @@ const StyledCard = styled(Card)`
   @media (min-width: 600px) {
     min-width: 250px;
   }
-`
+`;
 const ActionArea = styled(CardActionArea)`
   height: 100%;
 
-  &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight{
+  &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight {
     opacity: 0.13;
   }
-`
+`;
 
 const CardImagesF = styled(CardImages)`
   border-radius: 4px;
-`
+`;
 const WrapperF = styled.div`
   padding: 12px 12px 0;
   height: fit-content;
   @media (min-width: 600px) {
     padding: 18px 18px 0;
   }
-`
+`;
 const CardTitleF = styled.p`
   width: 100%;
   height: fit-content;
@@ -179,7 +199,7 @@ const CardTitleF = styled.p`
   text-overflow: ellipsis;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
- `
+`;
 const CardContentF = styled(CardContent)`
   display: flex;
   flex-direction: column;
@@ -194,7 +214,7 @@ const CardContentF = styled(CardContent)`
     padding: 7px 18px 12px !important;
     gap: 10px;
   }
-`
+`;
 const CardPrice = styled.p`
   display: inline-block;
   text-align: center;
@@ -202,25 +222,25 @@ const CardPrice = styled.p`
   padding: 0 10px;
   border-radius: 12px;
   color: var(--white);
-  background-color: var(--primary );
+  background-color: var(--primary);
   @media (min-width: 600px) {
     padding: 0 20px;
   }
-`
+`;
 const ActionAreaF = styled(ActionArea)`
   aspect-ratio: 1;
 
-  &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight{
+  &:hover .css-1v2exvi-MuiCardActionArea-focusHighlight {
     opacity: 0.13;
   }
-`
+`;
 const ProductInput = styled.input`
   position: absolute;
   width: 0;
   opacity: 0;
   margin: 0;
   pointer-events: none;
-`
+`;
 const ProductLabel = styled.label`
   position: relative;
   background-color: var(--gray);
@@ -229,20 +249,20 @@ const ProductLabel = styled.label`
   border-radius: 9px;
   color: var(--regular-text);
 
-  &:has(input:checked){
+  &:has(input:checked) {
     background-color: var(--secondary);
-    color: white
+    color: white;
   }
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
   @media (min-width: 600px) {
-   padding: 0 10px;
-   font-size: var(--xs)
+    padding: 0 10px;
+    font-size: var(--xs);
   }
-`
+`;
 const CartButton = styled.button`
   display: flex;
   width: 82%;
@@ -250,11 +270,11 @@ const CartButton = styled.button`
   justify-content: center;
   margin-top: auto;
   padding: 4px 8px;
-`
+`;
 const AddToCartIcon = styled(ShoppingCartIcon)`
   font-size: 22px;
   margin-left: 8px;
-`
+`;
 const QuantityBox = styled.div`
   display: grid;
   place-items: center;
@@ -267,7 +287,7 @@ const QuantityBox = styled.div`
   & label:last-child {
     grid-column: 1/3;
   }
-`
+`;
 const StyledCardF = styled(StyledCard)`
   display: grid;
   grid-template-rows: min-content auto;
@@ -276,6 +296,4 @@ const StyledCardF = styled(StyledCard)`
   @media (min-width: 600px) {
     max-width: 250px;
   }
-`
-
-export default HomeCard;
+`;

@@ -6,11 +6,11 @@ export const Icon = styled(ShoppingCartIcon)`
   border-radius: 20px;
   font-size: 34px;
   color: var(--primary-strong);
-  transition: .3s all ease;
+  transition: 0.3s all ease;
 
   &:hover {
     cursor: pointer;
     background-color: var(--primary-strong);
-    color: var(--white)
+    color: var(--white);
   }
-`
+`;
