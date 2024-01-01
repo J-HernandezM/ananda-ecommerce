@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext } from 'react';
-import { ProductsContext } from '../../../../context/products';
+import { ProductsContext, withProducts } from '../../../../context/products';
 import ReusableCard from '../../../../components/ReusableCard';
 import styled from '@emotion/styled';
 import categories from '../../../../data/categories';
@@ -16,7 +16,7 @@ const mock = [
   { name: 10, popularity: 10, price: 100 },
 ];
 
-export default function CategoryPage({ params }) {
+const CategoryPage = ({ params }) => {
   const { products } = useContext(ProductsContext);
   const searchParams = useSearchParams();
 
@@ -74,7 +74,7 @@ export default function CategoryPage({ params }) {
       {products && <ProductGrid products={products} />}
     </StoreBox>
   );
-}
+};
 
 function ProductGrid({ products }) {
   const handleClick = () => {
@@ -142,3 +142,5 @@ const Title = styled.h2`
     padding: 8px 0;
   }
 `;
+
+export default withProducts(CategoryPage);

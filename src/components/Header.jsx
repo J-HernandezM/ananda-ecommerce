@@ -1,22 +1,28 @@
+// @packages
 import { IconButton, InputBase, Paper } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
-import { Icon } from '../shared/styles/Icon';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
+
+// @styles
+import { Icon } from '../shared/styles/Icon';
+import categories from '../data/categories';
 import logo from '../assets/logo-sin-fondo.png';
 import logowhite from '../assets/logo-white.png';
 import MobileMenu from './MobileMenu';
-import categories from '../data/categories';
-import Image from 'next/image';
 
-export default function Header({ mobMenu, setMobMenu }) {
+const Header = () => {
+  const [mobMenu, setMobMenu] = useState(false);
   const router = useRouter();
 
   const toggleMobileMenu = () => {
     setMobMenu(!mobMenu);
   };
+
   const navHome = () => {
     router.push('/');
   };
@@ -50,7 +56,7 @@ export default function Header({ mobMenu, setMobMenu }) {
       />
     </header>
   );
-}
+};
 
 function SearchBar() {
   return (
@@ -193,3 +199,5 @@ const Phrase = styled.div`
     z-index: 0;
   }
 `;
+
+export default Header;

@@ -1,13 +1,14 @@
 'use client';
 import ImageSlider from '../../components/ImageSlider';
 import SliderPanel from '../../components/SliderPanel';
+import { withProducts } from '../../context/products';
 
-export default function Homepage() {
-  return (
-    <>
-      <ImageSlider />
-      <SliderPanel type={'Categorias'} />
-      <SliderPanel type={'Destacados'} />
-    </>
-  );
-}
+const Homepage = () => (
+  <>
+    <ImageSlider />
+    <SliderPanel type={'Categorias'} />
+    <SliderPanel type={'Destacados'} />
+  </>
+);
+
+export default withProducts(Homepage);

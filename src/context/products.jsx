@@ -27,3 +27,10 @@ export default async function ProductsProvider({ children }) {
     </ProductsContext.Provider>
   );
 }
+
+// eslint-disable-next-line react/display-name
+export const withProducts = (Component) => (props) => (
+  <ProductsProvider>
+    <Component {...props} />
+  </ProductsProvider>
+);
