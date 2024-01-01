@@ -1,6 +1,13 @@
-import styled from '@emotion/styled';
+'use-client';
+
+// @packages
 import { Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
+import Image from 'next/image';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import styled from '@emotion/styled';
+
+// @scripts
+import strapiImageLoader from '../../image-loader';
 
 export default function ReusableCard({ product, handleClick }) {
   const formatPrice = (price) => {
@@ -12,10 +19,11 @@ export default function ReusableCard({ product, handleClick }) {
     <StyledCard>
       <Wrapper>
         <ActionArea onClick={handleClick}>
-          <CardImages
-            component="img"
-            image={process.env.NEXT_PUBLIC_TEST + product.featuredImage.url}
+          <Image
+            src={product.featuredImage.url}
             alt={product.featuredImage.alternativeText}
+            loader={strapiImageLoader}
+            fill
           />
         </ActionArea>
       </Wrapper>
