@@ -3,9 +3,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-import styled from '@emotion/styled';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import styled from '@emotion/styled';
 
 export default function HomeCard({
   category,
