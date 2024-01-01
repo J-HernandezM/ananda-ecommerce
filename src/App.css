@@ -1,46 +1,46 @@
-#root{
-    font-family: var(--font-abnormal);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-width: 350px;
+#root {
+  font-family: var(--font-abnormal);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 350px;
 }
 
-main{
-    flex-grow: 1;
+main {
+  flex-grow: 1;
 }
 
-header{
-    position: fixed;
-    width: 100%;
-    z-index: 9;
-    height: 108px;
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  height: 108px;
 }
-.scroll--smooth{
-    scroll-behavior: smooth;
+.scroll--smooth {
+  scroll-behavior: smooth;
 }
-.scroll--mandatory{
-    scroll-snap-type: x mandatory;
+.scroll--mandatory {
+  scroll-snap-type: x mandatory;
 }
-.gap10{
-    display: flex;
-    gap: 10px;
+.gap10 {
+  display: flex;
+  gap: 10px;
 }
-.link--active{
-    color: var(--primary-strong); 
-    background-color: var(--white); 
-    font-family: var(--font-abnormal-n);
-    white-space: nowrap;
+.link--active {
+  color: var(--primary-strong);
+  background-color: var(--white);
+  font-family: var(--font-abnormal-n);
+  white-space: nowrap;
 }
-.link--unactive{
-    color: var(--white);
-    background-color: inherit;
-    font-family: var(--font-abnormal-n);
-    white-space: nowrap;
+.link--unactive {
+  color: var(--white);
+  background-color: inherit;
+  font-family: var(--font-abnormal-n);
+  white-space: nowrap;
 }
 
 @media (min-width: 650px) {
-    header{
-        height: 172px;
-    }   
+  header {
+    height: 172px;
+  }
 }
