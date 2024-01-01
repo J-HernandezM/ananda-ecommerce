@@ -3,7 +3,7 @@ import HomeCard from '.';
 
 const mockProps = {
   category: {
-    title: 'Mock Category Title'
+    title: 'Mock Category Title',
   },
   drag: false,
   distance: 0,
