@@ -1,7 +1,4 @@
-'use client'
-
 import React from "react";
-import { useFetch } from "../shared/useFetch";
 import { sanitizeApiResponse } from "../shared/sanitizeApiResponse";
 
 export const ProductsContext = React.createContext();
@@ -15,26 +12,17 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-export default function ProductsProvider({children}){
-    const {
-        data, 
-        loading, 
-        error, 
-        handleCancelRequest
-    } = useFetch(`${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`, requestOptions)
+const url = `${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`;
 
-    const products = sanitizeApiResponse(data)
+export default async function ProductsProvider({children}){
+    const res = await fetch(url, requestOptions);
+    const data = await res.json();
+    const products = sanitizeApiResponse(data);
 
-    return(
-        <ProductsContext.Provider
-            value={{
-                products,
-                data,
-                loading,
-                error,
-                handleCancelRequest
-            }}
-        >
+    console.log(products);
+
+    return (
+        <ProductsContext.Provider value={{ products }}>
             {children}
         </ProductsContext.Provider>
     )

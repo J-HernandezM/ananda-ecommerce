@@ -17,7 +17,7 @@ const mock = [
 ]
 
 export default function CategoryPage ({ params }) {
-    const { loading, products } = useContext(ProductsContext)
+    const { products } = useContext(ProductsContext)
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -68,8 +68,7 @@ export default function CategoryPage ({ params }) {
                     <option value="price-high">Ordenar por precio: alto a bajo</option>
                 </select>
             </div>
-            {loading && <p>Cargando...</p>}
-            {(!loading && products) && <ProductGrid products={products}/>}
+            {products && <ProductGrid products={products}/>}
         </StoreBox>
     )
 }
