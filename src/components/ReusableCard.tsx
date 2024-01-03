@@ -8,29 +8,38 @@ import styled from '@emotion/styled';
 
 // @scripts
 import strapiImageLoader from '../../image-loader';
+import { formatPrice } from '../shared/string';
 
-export default function ReusableCard({ product, handleClick }) {
-  const formatPrice = (price) => {
-    const priceString = price.toString();
-    return priceString.slice(0, -3) + '.' + priceString.slice(-3);
-  };
+type ReusableCardProps = {
+  image: {
+    url: string,
+    alternativeText: string,
+  },
+  onClick: () => void,
+  title: string,
+};
 
+const ReusableCard: React.FC<ReusableCardProps> = ({
+  image,
+  onClick,
+  title,
+}) => {
   return (
     <StyledCard>
       <Wrapper>
-        <ActionArea onClick={handleClick}>
+        <ActionArea onClick={onClick}>
           <Image
-            src={product.featuredImage.url}
-            alt={product.featuredImage.alternativeText}
+            src={image.url}
+            alt={image.alternativeText}
             loader={strapiImageLoader}
             fill
           />
         </ActionArea>
       </Wrapper>
       <Content>
-        <CardTitle> {product.title} </CardTitle>
+        <CardTitle>{title}</CardTitle>
         <CardPrice>$ 16.000</CardPrice>
-        <QuantityBox>
+        {/* <QuantityBox>
           <ProductLabel htmlFor={`x1${product.id}`}>
             1 x {formatPrice(product.priceDetails[0].value)}
             <ProductInput
@@ -55,14 +64,14 @@ export default function ReusableCard({ product, handleClick }) {
               type="radio"
             />
           </ProductLabel>
-        </QuantityBox>
+        </QuantityBox> */}
         <CartButton>
           AGREGAR <AddToCartIcon />
         </CartButton>
       </Content>
     </StyledCard>
   );
-}
+};
 
 const CardImages = styled(CardMedia)`
   position: relative;
@@ -206,3 +215,5 @@ const StyledCard = styled(Card)`
     max-width: 250px;
   }
 `;
+
+export default ReusableCard;

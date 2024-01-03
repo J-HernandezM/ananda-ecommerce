@@ -55,6 +55,7 @@ export default function ImageSlider() {
   const startSlider = () => {
     sliderId = setInterval(slideForward, 3000);
   };
+
   const stopSlider = () => {
     clearInterval(sliderId);
   };

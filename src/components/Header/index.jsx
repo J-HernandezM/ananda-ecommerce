@@ -1,19 +1,19 @@
 // @packages
 import { IconButton, InputBase, Paper } from '@mui/material';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
 
 // @styles
-import { Icon } from '../shared/styles/Icon';
-import categories from '../data/categories';
-import logo from '../assets/logo-sin-fondo.png';
-import logowhite from '../assets/logo-white.png';
-import MobileMenu from './MobileMenu';
+import { Icon } from '../../shared/styles/Icon';
+import categories from '../../data/categories';
+import logo from '../../assets/logo-sin-fondo.png';
+import logowhite from '../../assets/logo-white.png';
+import MobileMenu from '../MobileMenu';
+import NavBar from './NavBar';
 
 const Header = () => {
   const [mobMenu, setMobMenu] = useState(false);
@@ -43,11 +43,7 @@ const Header = () => {
           <Icon />
         </HeaderRight>
       </MainHeader>
-      <Categories>
-        {categories.map((category) => (
-          <CategoryLink category={category} key={category.slug} />
-        ))}
-      </Categories>
+      <NavBar />
 
       <MobileMenu
         categories={categories}
@@ -73,22 +69,6 @@ function SearchBar() {
   );
 }
 
-function CategoryLink({ category }) {
-  const pathname = usePathname();
-
-  return (
-    <StyledNavLink
-      className={
-        pathname === `/${category.slug}` ? 'link--active' : 'link--unactive'
-      }
-      key={category.slug}
-      href={`/category/${category.slug}`}
-    >
-      {category.title}
-    </StyledNavLink>
-  );
-}
-
 const MainHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -108,23 +88,6 @@ const UpperHeader = styled.div`
   height: 38px;
   padding: 8px 40px;
 `;
-const Categories = styled.ul`
-  display: none;
-  margin: 0;
-  padding-left: 0px;
-  gap: 10px;
-  background-color: var(--primary-strong);
-  color: var(--white);
-
-  @media (min-width: 650px) {
-    display: flex;
-  }
-`;
-const StyledNavLink = styled(Link)`
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  padding: 0 10px;
-`;
 
 const HeaderRight = styled.div`
   display: flex;
@@ -137,6 +100,7 @@ const HeaderRight = styled.div`
     flex-grow: 0;
   }
 `;
+
 const SearchBarPaper = styled(Paper)`
   display: flex;
   align-items: center;

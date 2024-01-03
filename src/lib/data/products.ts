@@ -1,0 +1,32 @@
+// @scripts
+import { sanitizeApiResponse } from '../../shared/sanitizeApiResponse';
+
+const requestOptions = {
+  method: 'GET',
+  headers: {
+    Authorization: process.env.NEXT_PUBLIC_API_KEY,
+  },
+};
+
+const url = `${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`;
+
+type ProductImage = {
+  alternativeText: string,
+  name: string,
+  url: string,
+};
+
+export type Product = {
+  title: string,
+  description: string,
+  images: ProductImage[],
+  featuredImage: ProductImage,
+};
+
+const fetchProducts = async (): Promise<Product[]> => {
+  const res = await fetch(url, requestOptions);
+  const data = await res.json();
+  return sanitizeApiResponse(data);
+};
+
+export default fetchProducts;
