@@ -1,25 +1,36 @@
-'use client';
-
 import React from 'react';
-import { useFetch } from '../shared/useFetch';
+import { sanitizeApiResponse } from '../shared/sanitizeApiResponse';
 
 export const ProductsContext = React.createContext();
 
-export default function ProductsProvider({ children }) {
-  const { data, loading, error, handleCancelRequest } = useFetch(
-    'https://api.escuelajs.co/api/v1/products',
-  );
+const myHeaders = new Headers();
+myHeaders.append('Authorization', process.env.NEXT_PUBLIC_API_KEY);
+
+const requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow',
+};
+
+const url = `${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`;
+
+export default async function ProductsProvider({ children }) {
+  const res = await fetch(url, requestOptions);
+  const data = await res.json();
+  const products = sanitizeApiResponse(data);
+
+  console.log(products);
 
   return (
-    <ProductsContext.Provider
-      value={{
-        data,
-        loading,
-        error,
-        handleCancelRequest,
-      }}
-    >
+    <ProductsContext.Provider value={{ products }}>
       {children}
     </ProductsContext.Provider>
   );
 }
+
+// eslint-disable-next-line react/display-name
+export const withProducts = (Component) => (props) => (
+  <ProductsProvider>
+    <Component {...props} />
+  </ProductsProvider>
+);

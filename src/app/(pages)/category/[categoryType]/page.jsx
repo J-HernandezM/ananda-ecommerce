@@ -1,11 +1,11 @@
 'use client';
 
 import { useContext } from 'react';
-import { ProductsContext } from '../../../../context/products';
+import { ProductsContext, withProducts } from '../../../../context/products';
 import ReusableCard from '../../../../components/ReusableCard';
 import styled from '@emotion/styled';
 import categories from '../../../../data/categories';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const mock = [
   { name: 1, popularity: 1, price: 200 },
@@ -16,13 +16,14 @@ const mock = [
   { name: 10, popularity: 10, price: 100 },
 ];
 
-export default function CategoryPage({ params }) {
-  const { data, loading } = useContext(ProductsContext);
-  const router = useRouter();
-  const pathname = usePathname();
+const CategoryPage = ({ params }) => {
+  const { products } = useContext(ProductsContext);
   const searchParams = useSearchParams();
 
+  //TODO: change data for products at GRID and organize the attributes at ReusableCard
+
   const sortBy = searchParams.get('sortBy');
+
   const categoryTitle = categories.find(
     (category) => category.slug === params.categoryType,
   ).title;
@@ -51,11 +52,6 @@ export default function CategoryPage({ params }) {
     } else {
       current.set('sortBy', value);
     }
-
-    const search = current.toString();
-    const query = search ? `?${search}` : '';
-
-    router.push(`${pathname}${query}`);
   };
 
   // const filterBy = params.categoryType use this to filter using the route
@@ -75,20 +71,19 @@ export default function CategoryPage({ params }) {
           <option value="price-high">Ordenar por precio: alto a bajo</option>
         </select>
       </div>
-      {loading && <p>Cargando...</p>}
-      {!loading && data && <ProductGrid data={data} />}
+      {products && <ProductGrid products={products} />}
     </StoreBox>
   );
-}
+};
 
-function ProductGrid({ data }) {
+function ProductGrid({ products }) {
   const handleClick = () => {
     console.log('click');
   };
 
   return (
     <Grid>
-      {data.map((product) => (
+      {products.map((product) => (
         <ReusableCard
           key={product.id}
           product={product}
@@ -147,3 +142,5 @@ const Title = styled.h2`
     padding: 8px 0;
   }
 `;
+
+export default withProducts(CategoryPage);

@@ -1,16 +1,29 @@
-import styled from '@emotion/styled';
+'use-client';
+
+// @packages
 import { Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
+import Image from 'next/image';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingBagOutlined';
+import styled from '@emotion/styled';
+
+// @scripts
+import strapiImageLoader from '../../image-loader';
 
 export default function ReusableCard({ product, handleClick }) {
+  const formatPrice = (price) => {
+    const priceString = price.toString();
+    return priceString.slice(0, -3) + '.' + priceString.slice(-3);
+  };
+
   return (
     <StyledCard>
       <Wrapper>
         <ActionArea onClick={handleClick}>
-          <CardImages
-            component="img"
-            image={product.images[0]}
-            alt={product.slug}
+          <Image
+            src={product.featuredImage.url}
+            alt={product.featuredImage.alternativeText}
+            loader={strapiImageLoader}
+            fill
           />
         </ActionArea>
       </Wrapper>
@@ -19,7 +32,7 @@ export default function ReusableCard({ product, handleClick }) {
         <CardPrice>$ 16.000</CardPrice>
         <QuantityBox>
           <ProductLabel htmlFor={`x1${product.id}`}>
-            1 x $ 16.000
+            1 x {formatPrice(product.priceDetails[0].value)}
             <ProductInput
               name={`quantityOf${product.id}`}
               id={`x1${product.id}`}
@@ -27,7 +40,7 @@ export default function ReusableCard({ product, handleClick }) {
             />
           </ProductLabel>
           <ProductLabel htmlFor={`x2${product.id}`}>
-            2 x $28.000
+            2 x {formatPrice(product.priceDetails[1].value)}
             <ProductInput
               name={`quantityOf${product.id}`}
               id={`x2${product.id}`}
@@ -35,7 +48,7 @@ export default function ReusableCard({ product, handleClick }) {
             />
           </ProductLabel>
           <ProductLabel htmlFor={`x12${product.id}`}>
-            12 x $ 108.000
+            12 x {formatPrice(product.priceDetails[2].value)}
             <ProductInput
               name={`quantityOf${product.id}`}
               id={`x12${product.id}`}
