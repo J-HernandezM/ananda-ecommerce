@@ -40,6 +40,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, title }) => {
             title={product.title}
             onClick={onClickProduct}
             image={product.featuredImage}
+            priceDetails={product.priceDetails}
+            produtId={product.id}
           />
         ))}
       </Grid>
