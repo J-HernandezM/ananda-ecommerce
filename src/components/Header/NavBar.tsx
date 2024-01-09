@@ -30,13 +30,14 @@ const NavBar = () => {
 
   return (
     <Categories>
-      {navItems.map((navItem) => (
-        <NavItem
-          title={navItem.title}
-          url={navItem.url}
-          key={`nav-${navItem.url}`}
-        />
-      ))}
+      {navItems.length > 0 &&
+        navItems.map((navItem) => (
+          <NavItem
+            title={navItem.title}
+            url={navItem.url}
+            key={`nav-${navItem.url}`}
+          />
+        ))}
     </Categories>
   );
 };
