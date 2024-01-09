@@ -16,6 +16,7 @@ type ProductGridProps = {
 
 const Grid = styled.div`
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, 172px);
   gap: 15px;
   margin-top: 8px;
