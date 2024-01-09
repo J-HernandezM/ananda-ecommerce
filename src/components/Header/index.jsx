@@ -15,11 +15,14 @@ import logowhite from '../../assets/logo-white.png';
 import MobileMenu from '../MobileMenu';
 import NavBar from './NavBar';
 
-const Header = ({ mobMenu, setMobMenu }) => {
+const Header = () => {
+  const [mobMenu, setMobMenu] = useState(false);
   const router = useRouter();
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e) => {
+    const mainBox = e.target.closest('header').nextElementSibling;
     setMobMenu(!mobMenu);
+    mainBox.classList.toggle('openMobMenu');
   };
 
   const navHome = () => {
@@ -47,7 +50,7 @@ const Header = ({ mobMenu, setMobMenu }) => {
       <MobileMenu
         categories={categories}
         mobMenu={mobMenu}
-        setMobMenu={setMobMenu}
+        toggleMobileMenu={toggleMobileMenu}
       />
     </header>
   );

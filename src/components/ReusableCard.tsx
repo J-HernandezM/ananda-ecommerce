@@ -67,8 +67,6 @@ const ReusableCard: React.FC<ReusableCardProps> = ({
 
 const CardImages = styled(Image)`
   position: relative;
-  /* width: 100%; */
-  /* height: 100%; */
   object-fit: cover;
   border-radius: 4px;
 `;

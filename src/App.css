@@ -8,6 +8,7 @@
 
 main {
   flex-grow: 1;
+  transition: 0.3s all;
 }
 
 header {
@@ -43,6 +44,10 @@ header {
   background-color: inherit;
   font-family: var(--font-abnormal-n);
   white-space: nowrap;
+}
+
+.openMobMenu {
+  transform: translateY(192px);
 }
 
 @media (min-width: 650px) {

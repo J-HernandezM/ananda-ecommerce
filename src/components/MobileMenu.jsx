@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
-export default function MobileMenu({ categories, mobMenu, setMobMenu }) {
+function MobileMenu({ categories, mobMenu, toggleMobileMenu }) {
   return (
     <MobileWrapper mobMenu={mobMenu}>
       {categories.map((category) => (
         <MobCategory
-          onClick={() => {
-            setMobMenu(!mobMenu);
-          }}
+          onClick={toggleMobileMenu}
           href={`/category/${category.slug}`}
           key={category.slug}
         >
@@ -47,3 +45,5 @@ const MobCategory = styled(Link)`
     color: var(--primary);
   }
 `;
+
+export default MobileMenu;
