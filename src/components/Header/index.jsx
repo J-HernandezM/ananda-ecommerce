@@ -15,8 +15,7 @@ import logowhite from '../../assets/logo-white.png';
 import MobileMenu from '../MobileMenu';
 import NavBar from './NavBar';
 
-const Header = () => {
-  const [mobMenu, setMobMenu] = useState(false);
+const Header = ({mobMenu, setMobMenu}) => {
   const router = useRouter();
 
   const toggleMobileMenu = () => {
@@ -151,6 +150,7 @@ const Phrase = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: var(--font-abnormal);
   min-width: 177px;
   line-height: 15px;
 

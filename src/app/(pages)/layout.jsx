@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import '../../index.css';
 import '../../App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { useState } from 'react';
 
 const customTheme = createTheme({
   typography: {
@@ -15,17 +16,18 @@ const customTheme = createTheme({
 
 const MainContainer = styled.main`
   transition: 0.3s all;
-  @media (min-width: 650px) {
-    transform: translateY(172px);
-  }
+  transform: translateY(${(props) => (props.mobMenu ? '192px' : '0PX')});
 `;
 
-const AppLayout = ({ children }) => (
-  <ThemeProvider theme={customTheme}>
-    <Header />
-    <MainContainer>{children}</MainContainer>
-    <Footer />
-  </ThemeProvider>
-);
+const AppLayout = ({ children }) => {
+  const [mobMenu, setMobMenu] = useState(false);
 
+  return(
+    <ThemeProvider theme={customTheme}>
+      <Header mobMenu={mobMenu} setMobMenu={setMobMenu}/>
+      <MainContainer mobMenu={mobMenu}>{children}</MainContainer>
+      <Footer />
+    </ThemeProvider>
+  );
+}
 export default AppLayout;

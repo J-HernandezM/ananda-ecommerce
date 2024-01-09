@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 
 export default function MobileMenu({ categories, mobMenu, setMobMenu }) {
+  console.log(mobMenu)
   return (
     <MobileWrapper mobMenu={mobMenu}>
       {categories.map((category) => (
