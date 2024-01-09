@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
 'use client';
+
 import ImageSlider from '../../components/ImageSlider';
 import SliderPanel from '../../components/SliderPanel';
-import { withProducts } from '../../context/products';
 
 const Homepage = () => (
   <>
@@ -11,4 +12,4 @@ const Homepage = () => (
   </>
 );
 
-export default withProducts(Homepage);
+export default Homepage;

@@ -8,61 +8,62 @@ import styled from '@emotion/styled';
 
 // @scripts
 import strapiImageLoader from '../../image-loader';
+import { formatPrice } from '../shared/string';
+import { Product } from '../lib/data/products';
 
-export default function ReusableCard({ product, handleClick }) {
-  const formatPrice = (price) => {
-    const priceString = price.toString();
-    return priceString.slice(0, -3) + '.' + priceString.slice(-3);
-  };
+type ReusableCardProps = {
+  image: {
+    url: string,
+    alternativeText: string,
+  },
+  onClick: () => void,
+  priceDetails: Product['priceDetails'],
+  produtId: Product['id'],
+  title: string,
+};
 
-  return (
-    <StyledCard>
-      <Wrapper>
-        <ActionArea onClick={handleClick}>
-          <Image
-            src={product.featuredImage.url}
-            alt={product.featuredImage.alternativeText}
-            loader={strapiImageLoader}
-            fill
-          />
-        </ActionArea>
-      </Wrapper>
-      <Content>
-        <CardTitle> {product.title} </CardTitle>
-        <CardPrice>$ 16.000</CardPrice>
-        <QuantityBox>
-          <ProductLabel htmlFor={`x1${product.id}`}>
-            1 x {formatPrice(product.priceDetails[0].value)}
+const ReusableCard: React.FC<ReusableCardProps> = ({
+  image,
+  onClick,
+  priceDetails = [],
+  produtId,
+  title,
+}) => (
+  <StyledCard>
+    <Wrapper>
+      <ActionArea onClick={onClick}>
+        <Image
+          src={image.url}
+          alt={image.alternativeText}
+          loader={strapiImageLoader}
+          fill
+        />
+      </ActionArea>
+    </Wrapper>
+    <Content>
+      <CardTitle>{title}</CardTitle>
+      <CardPrice>{formatPrice(priceDetails[0]?.value)}</CardPrice>
+      <QuantityBox>
+        {priceDetails.map((priceDetail, index) => (
+          <ProductLabel
+            key={`${produtId}-price-detail-${index}`}
+            htmlFor={`${produtId}-price-detail-${index}`}
+          >
             <ProductInput
-              name={`quantityOf${product.id}`}
-              id={`x1${product.id}`}
+              name={`quantityOf${produtId}`}
+              id={`${produtId}-price-detail-${index}`}
               type="radio"
             />
+            1 x {formatPrice(priceDetail.value)}
           </ProductLabel>
-          <ProductLabel htmlFor={`x2${product.id}`}>
-            2 x {formatPrice(product.priceDetails[1].value)}
-            <ProductInput
-              name={`quantityOf${product.id}`}
-              id={`x2${product.id}`}
-              type="radio"
-            />
-          </ProductLabel>
-          <ProductLabel htmlFor={`x12${product.id}`}>
-            12 x {formatPrice(product.priceDetails[2].value)}
-            <ProductInput
-              name={`quantityOf${product.id}`}
-              id={`x12${product.id}`}
-              type="radio"
-            />
-          </ProductLabel>
-        </QuantityBox>
-        <CartButton>
-          AGREGAR <AddToCartIcon />
-        </CartButton>
-      </Content>
-    </StyledCard>
-  );
-}
+        ))}
+      </QuantityBox>
+      <CartButton>
+        AGREGAR <AddToCartIcon />
+      </CartButton>
+    </Content>
+  </StyledCard>
+);
 
 const CardImages = styled(CardMedia)`
   position: relative;
@@ -206,3 +207,5 @@ const StyledCard = styled(Card)`
     max-width: 250px;
   }
 `;
+
+export default ReusableCard;

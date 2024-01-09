@@ -1,3 +1,4 @@
+import RootStyleRegistry from './emotion';
 import * as fonts from './fonts';
 
 export const metadata = {
@@ -15,17 +16,19 @@ export default function RootLayout({ children }) {
       {/* TODO: merge abnormal into one archive with differents weights, define wich other fonts use */}
       <body
         className={`
-            ${fonts.abnormal.variable} 
-            ${fonts.abnormal6.variable} 
+            ${fonts.abnormal.variable}
+            ${fonts.abnormal6.variable}
             ${fonts.abnormalN.variable}
-            ${fonts.abnormalB.variable} 
-            ${fonts.innova.variable} 
-            ${fonts.myriad.variable} 
-            ${fonts.selfie.variable} 
-            ${fonts.vogue.variable} 
+            ${fonts.abnormalB.variable}
+            ${fonts.innova.variable}
+            ${fonts.myriad.variable}
+            ${fonts.selfie.variable}
+            ${fonts.vogue.variable}
           `}
       >
-        <div id="root">{children}</div>
+        <RootStyleRegistry options={{ enableCssLayer: true }}>
+          {children}
+        </RootStyleRegistry>
       </body>
     </html>
   );

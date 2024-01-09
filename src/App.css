@@ -13,9 +13,11 @@ main {
 header {
   position: fixed;
   width: 100%;
-  z-index: 9;
+  z-index: 1;
+  top: 0;
   height: 108px;
 }
+
 .scroll--smooth {
   scroll-behavior: smooth;
 }
