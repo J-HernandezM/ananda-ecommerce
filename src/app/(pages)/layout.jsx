@@ -22,12 +22,12 @@ const MainContainer = styled.main`
 const AppLayout = ({ children }) => {
   const [mobMenu, setMobMenu] = useState(false);
 
-  return(
+  return (
     <ThemeProvider theme={customTheme}>
-      <Header mobMenu={mobMenu} setMobMenu={setMobMenu}/>
+      <Header mobMenu={mobMenu} setMobMenu={setMobMenu} />
       <MainContainer mobMenu={mobMenu}>{children}</MainContainer>
       <Footer />
     </ThemeProvider>
   );
-}
+};
 export default AppLayout;

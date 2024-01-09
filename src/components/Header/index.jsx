@@ -15,7 +15,7 @@ import logowhite from '../../assets/logo-white.png';
 import MobileMenu from '../MobileMenu';
 import NavBar from './NavBar';
 
-const Header = ({mobMenu, setMobMenu}) => {
+const Header = ({ mobMenu, setMobMenu }) => {
   const router = useRouter();
 
   const toggleMobileMenu = () => {

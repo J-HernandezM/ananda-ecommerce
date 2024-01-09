@@ -17,7 +17,7 @@ const Categories = styled.ul`
 `;
 
 const NavBar = () => {
-  const [navItems, setNavItems] = useState([])
+  const [navItems, setNavItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ const NavBar = () => {
     };
 
     fetchData();
-  }, [])
+  }, []);
 
   return (
     <Categories>
