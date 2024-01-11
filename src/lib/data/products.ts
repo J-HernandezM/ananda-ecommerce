@@ -8,7 +8,7 @@ const requestOptions = {
   },
 };
 
-const url = `${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`;
+let url = `${process.env.NEXT_PUBLIC_URL_API}/products?populate=*`;
 
 type ProductImage = {
   alternativeText: string,
@@ -30,7 +30,10 @@ export type Product = {
   priceDetails: PriceDetail[],
 };
 
-const fetchProducts = async (): Promise<Product[]> => {
+const fetchProducts = async (id?: number): Promise<Product[]> => {
+  if (id) {
+    url = `${process.env.NEXT_PUBLIC_URL_API}/products/${id}?populate=*`;
+  }
   const res = await fetch(url, requestOptions);
   const data = await res.json();
   return sanitizeApiResponse(data);
