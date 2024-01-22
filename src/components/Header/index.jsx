@@ -19,8 +19,10 @@ const Header = () => {
   const [mobMenu, setMobMenu] = useState(false);
   const router = useRouter();
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e) => {
+    const mainBox = e.target.closest('header').nextElementSibling;
     setMobMenu(!mobMenu);
+    mainBox.classList.toggle('openMobMenu');
   };
 
   const navHome = () => {
@@ -48,7 +50,7 @@ const Header = () => {
       <MobileMenu
         categories={categories}
         mobMenu={mobMenu}
-        setMobMenu={setMobMenu}
+        toggleMobileMenu={toggleMobileMenu}
       />
     </header>
   );
@@ -151,6 +153,7 @@ const Phrase = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: var(--font-abnormal);
   min-width: 177px;
   line-height: 15px;
 

@@ -32,7 +32,7 @@ const ReusableCard: React.FC<ReusableCardProps> = ({
   <StyledCard>
     <Wrapper>
       <ActionArea onClick={onClick}>
-        <Image
+        <CardImages
           src={image.url}
           alt={image.alternativeText}
           loader={strapiImageLoader}
@@ -65,10 +65,8 @@ const ReusableCard: React.FC<ReusableCardProps> = ({
   </StyledCard>
 );
 
-const CardImages = styled(CardMedia)`
+const CardImages = styled(Image)`
   position: relative;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   border-radius: 4px;
 `;

@@ -105,10 +105,10 @@ select {
   --md: 18px;
   --lg: 20px;
   --xl: 26px;
-  /* font-size: 6.25%; */
 
   --error: #cf6679;
   --bg: #faf4f4;
+
 }
 
 a {

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import getMenu from '../../lib/data/menu';
 import NavItem from './NavItem';
+import { memo } from 'react';
 
 const Categories = styled.ul`
   display: none;
@@ -20,15 +21,16 @@ const NavBar = async () => {
 
   return (
     <Categories>
-      {navItems.map((navItem) => (
-        <NavItem
-          title={navItem.title}
-          url={navItem.url}
-          key={`nav-${navItem.url}`}
-        />
-      ))}
+      {navItems.length > 0 &&
+        navItems.map((navItem) => (
+          <NavItem
+            title={navItem.title}
+            url={navItem.url}
+            key={`nav-${navItem.url}`}
+          />
+        ))}
     </Categories>
   );
 };
 
-export default NavBar;
+export default memo(NavBar);

@@ -30,7 +30,7 @@ const Controls: React.FC<ControlsProps> = ({ title, value, onChange }) => (
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  /* max-width: 1370px; */
+  font-family: var(--font-abnormal);
   align-items: center;
 
   & select {
